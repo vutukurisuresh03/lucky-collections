@@ -266,52 +266,6 @@
             font-weight: 600;
         }
         .magic-rental-text i { color: var(--gold); margin: 0 8px; }
-
-        /* PHONE NUMBER - WHITE BUTTON STYLE */
-        .rental-actions {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 6px;
-        }
-        .rental-call {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #ffffff !important;
-            color: var(--burgundy) !important;
-            padding: 7px 14px;
-            border-radius: 22px;
-            border: 1px solid #ffffff;
-            text-decoration: none !important;
-            font-weight: 700;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-            transition: all 0.3s ease;
-        }
-        .rental-call i {
-            color: var(--burgundy) !important;
-            margin: 0 !important;
-        }
-        .rental-call:hover {
-            background: var(--gold) !important;
-            color: #ffffff !important;
-            transform: translateY(-1px);
-        }
-        .rental-call:hover i {
-            color: #ffffff !important;
-        }
-        .rental-wa {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            font-weight: 700;
-        }
-        .rental-wa i {
-            color: var(--whatsapp-green) !important;
-            margin: 0 !important;
-        }
         @keyframes marquee {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
@@ -773,6 +727,315 @@
         .footer-col p, .footer-col ul li a { font-size: 13px; color: #ccc; line-height: 1.6; text-decoration: none; cursor: pointer; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; font-size: 12px; color: #aaa; }
 
+        /* ================================================================
+           NEW OFFER POPUP + FRONT-SIDE CELEBRATION BLAST
+           ================================================================ */
+        .offer-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: rgba(20, 3, 7, 0.78);
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            overflow: hidden;
+        }
+        .offer-modal.show { display: flex; }
+        .offer-page {
+            width: min(520px, 96vw);
+            max-height: 92vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(145deg, #fffdf8, #fff3d8);
+            border: 3px solid var(--gold);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 20px 70px rgba(0,0,0,.45), 0 0 40px rgba(212,175,55,.45);
+            animation: offerPopIn .45s cubic-bezier(.17,.67,.3,1.25);
+        }
+        @keyframes offerPopIn {
+            from { transform: scale(.55) translateY(40px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .offer-page-title {
+            text-align: center;
+            color: var(--burgundy);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 6vw, 34px);
+            line-height: 1.15;
+            margin: 0 35px 8px;
+        }
+        .offer-page-subtitle {
+            text-align: center;
+            color: #6a4b13;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .offer-close-btn {
+            position: absolute;
+            right: 12px;
+            top: 10px;
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--burgundy);
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 30;
+        }
+        .offer-phone-row {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0 8px;
+        }
+        .offer-phone-row input {
+            min-width: 0;
+            flex: 1;
+            border: 2px solid #d7bd70;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+        }
+        .offer-phone-row input:focus { border-color: var(--burgundy); }
+        .offer-check-btn {
+            border: 0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, var(--burgundy), #8a1728);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .offer-error {
+            display: none;
+            color: #b42318;
+            background: #fff0ee;
+            border: 1px solid #f0aaa3;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .offer-result-big {
+            display: none;
+            margin-top: 14px;
+            padding: 18px 14px;
+            border-radius: 16px;
+            background: #fff;
+            border: 2px solid var(--gold);
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(212,175,55,.12);
+        }
+        .offer-result-big.show { display: block; animation: resultReveal .5s ease; }
+        @keyframes resultReveal {
+            from { transform: scale(.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .offer-result-big .offer-percent {
+            display: block;
+            color: #138a3b;
+            font-size: clamp(38px, 11vw, 64px);
+            line-height: 1;
+            font-weight: 900;
+            margin: 8px 0;
+        }
+        .offer-result-big .offer-save {
+            color: var(--burgundy);
+            font-size: clamp(22px, 6vw, 34px);
+            font-weight: 900;
+            margin: 6px 0;
+        }
+        .offer-result-big .offer-final {
+            color: #111;
+            font-size: clamp(20px, 5vw, 28px);
+            font-weight: 900;
+        }
+        .offer-result-big .offer-gift {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--burgundy);
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 14px;
+        }
+        .offer-result-note {
+            margin-top: 10px;
+            padding: 9px;
+            border-radius: 9px;
+            background: #fff3cd;
+            color: #684b00;
+            border: 1px solid #e5bd3b;
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 1.45;
+        }
+        .offer-whatsapp-btn {
+            display: none;
+            width: 100%;
+            margin-top: 12px;
+            border: 0;
+            border-radius: 12px;
+            padding: 13px;
+            background: #25D366;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .offer-whatsapp-btn.show { display: block; }
+
+        /* Celebration must be ABOVE the popup, not behind it. */
+        .front-celebration-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .front-blast-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 15px 6px #fff, 0 0 45px 18px var(--gold);
+            transform: translate(-50%,-50%) scale(0);
+            animation: frontFlash .55s ease-out forwards;
+        }
+        @keyframes frontFlash {
+            0% { opacity: 1; transform: translate(-50%,-50%) scale(.2); }
+            35% { opacity: 1; transform: translate(-50%,-50%) scale(7); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(13); }
+        }
+        .front-blast-particle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 8px;
+            height: 18px;
+            border-radius: 3px;
+            opacity: 0;
+            animation: frontBlastFly 1.8s cubic-bezier(.1,.7,.25,1) forwards;
+            transform-origin: center;
+        }
+        @keyframes frontBlastFly {
+            0% { opacity: 1; transform: translate(-50%,-50%) rotate(0deg) scale(1.2); }
+            12% { opacity: 1; }
+            100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(.65); }
+        }
+        .front-celebration-text {
+            position: absolute;
+            left: 50%;
+            top: 42%;
+            transform: translate(-50%,-50%) scale(.5);
+            color: #fff;
+            font-size: clamp(28px, 9vw, 58px);
+            font-weight: 900;
+            text-align: center;
+            text-shadow: 0 0 10px #000, 0 0 24px var(--gold);
+            white-space: nowrap;
+            opacity: 0;
+            animation: celebrationText 1.5s ease-out forwards;
+        }
+        @keyframes celebrationText {
+            0% { opacity: 0; transform: translate(-50%,-50%) scale(.4); }
+            18% { opacity: 1; transform: translate(-50%,-50%) scale(1.12); }
+            32% { transform: translate(-50%,-50%) scale(1); }
+            75% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.08); }
+        }
+
+        /* Top cart recommendation banner - shown to every visitor when an item is added */
+        .cart-top-offer {
+            display: none;
+            flex-shrink: 0;
+            margin: 0 0 12px;
+            border: 1px solid #e1c75c;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff8dc 0%, #ffffff 55%, #fff4f6 100%);
+            box-shadow: 0 3px 12px rgba(74,14,23,.10);
+            cursor: pointer;
+        }
+        .cart-top-offer.show {
+            display: block;
+            animation: cartOfferDrop .45s ease-out;
+        }
+        @keyframes cartOfferDrop {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cart-top-offer-head {
+            padding: 7px 10px;
+            text-align: center;
+            background: linear-gradient(90deg, #fff0b8, #fff, #ffe6eb);
+            color: var(--burgundy);
+            font-size: 12px;
+            font-weight: 900;
+            border-bottom: 1px solid #ead58b;
+        }
+        .cart-top-offer-body {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px;
+        }
+        .cart-top-offer-img {
+            width: 64px;
+            height: 64px;
+            flex: 0 0 64px;
+            object-fit: contain;
+            border-radius: 9px;
+            background: #fff;
+            border: 1px solid #ead58b;
+        }
+        .cart-top-offer-copy { flex: 1; min-width: 0; }
+        .cart-top-offer-title {
+            color: var(--burgundy);
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1.25;
+        }
+        .cart-top-offer-text {
+            display: block;
+            color: #765400;
+            font-size: 10.5px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-top: 3px;
+        }
+        .cart-top-offer-btn {
+            flex-shrink: 0;
+            border: 0;
+            border-radius: 18px;
+            padding: 7px 9px;
+            background: linear-gradient(135deg, var(--burgundy), #8a1728);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        @media (max-width: 420px) {
+            .cart-top-offer-body { padding: 8px; gap: 7px; }
+            .cart-top-offer-img { width: 58px; height: 58px; flex-basis: 58px; }
+            .cart-top-offer-title { font-size: 12px; }
+            .cart-top-offer-text { font-size: 9.5px; }
+            .cart-top-offer-btn { padding: 6px 7px; font-size: 9px; }
+        }
+
         @media (max-width: 900px) {
             header { flex-direction: column; gap: 12px; padding: 12px 3%; }
             nav ul { flex-wrap: wrap; justify-content: center; gap: 6px; }
@@ -781,6 +1044,10 @@
             .cart-sidebar { width: 100%; right: -100%; }
             .product-img { height: 230px; }
             .img-modal-close { right: 20px; top: 15px; font-size: 30px; }
+            .offer-page { padding: 20px 12px 16px; }
+            .offer-phone-row { flex-direction: column; }
+            .offer-check-btn { width: 100%; }
+            .front-celebration-text { white-space: normal; width: 92%; }
         }
 
     </style>
@@ -830,7 +1097,7 @@
     <!-- MOVING MAGIC ANNOUNCEMENT BAR -->
     <div class="magic-rental-bar">
         <div class="magic-rental-text">
-            <i class="fa-solid fa-crown"></i> వివాహాది శుభకార్యాలకి 1-Gram Gold నగలను అద్దెకు (Rent) ఇవ్వబడును. సంప్రదించండి: <span class="rental-actions"><a id="rentalPhoneLink" class="rental-call" href="tel:93817 10402"><i class="fa-solid fa-phone"></i> +91 9876543210</a><a id="rentalWhatsAppLink" class="rental-wa" href="https://api.whatsapp.com/send?phone=919876543210" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></span> <i class="fa-solid fa-gem"></i>
+            <i class="fa-solid fa-crown"></i> వివాహాది శుభకార్యాలకి 1-Gram Gold నగలను అద్దెకు (Rent) ఇవ్వబడును. సంప్రదించండి: <span class="rental-actions"><a id="rentalPhoneLink" class="rental-call" href="tel:919876543210"><i class="fa-solid fa-phone"></i> +91 9876543210</a><a id="rentalWhatsAppLink" class="rental-wa" href="https://api.whatsapp.com/send?phone=919876543210" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></span> <i class="fa-solid fa-gem"></i>
         </div>
     </div>
 
@@ -860,39 +1127,15 @@
             </div>
 
             <!-- SPARKING MAGICAL ANIMATED OFFER BUTTON -->
-            <button class="magic-offer-btn" onclick="toggleOfferBox()">
+            <button class="magic-offer-btn" onclick="openOfferModal()">
                 <i class="fa-solid fa-sparkles sparkle-icon"></i> 
                 <span>✨ ప్రతీ ₹2000 కొనుగోలుపై ఉచిత గిఫ్ట్! మీ గిఫ్ట్ ఏంటో చూడండి ✨</span>
                 <i class="fa-solid fa-sparkles sparkle-icon"></i>
             </button>
 
-            <!-- OFFER BOX DISPLAY -->
-            <div class="offer-card" id="offerBox" style="display: none;">
-                <h4>🎁 మీ ఉచిత గిఫ్ట్ & ఆఫర్ డిస్కౌంట్ చెక్ చేసుకోండి!</h4>
-                <p style="font-size:12px; color:#555;">మీ ఆఫర్ గిఫ్ట్ ఏంటో తెలుసుకోవడానికి మీ 10-అంకెల ఫోన్ నంబర్ ఎంటర్ చేయండి.</p>
-                <div class="offer-input-group">
-                    <input type="tel" id="userPhone" placeholder="10 అంకెల మొబైల్ నంబర్" maxlength="10">
-                    <button class="offer-btn" onclick="checkDiscountOffer()">చెక్ చేసుకోండి</button>
-                </div>
-                <div class="error-msg" id="phoneError">⚠️ దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను ఎంటర్ చేయండి!</div>
-                
-                <div class="offer-result" id="offerResult" style="display: none;">
-                    <h5 id="giftTitle">🎉 మీ ఉచిత గిఫ్ట్ కన్ఫర్మ్ అయ్యింది!</h5>
-                    <p style="font-size:14px; color:#4A0E17; font-weight:700; margin: 8px 0;">
-                        మీకు లభించిన ఉచిత గిఫ్ట్: <span id="giftName" style="color:#d4af37; background:#4a0e17; padding:2px 8px; border-radius:4px;">-</span>
-                    </p>
-                    <p style="font-size:12px; color:#333; margin-bottom:6px;">
-                        మీ ప్రత్యేక డిస్కౌంట్: <strong id="discountValueText" style="color:#28a745;">-</strong>
-                    </p>
-                    
-                    <div class="item-restriction-note">
-                        💡 గమనిక: ఈ డిస్కౌంట్ ఆఫర్ కేవలం 1 Gram Gold జ్యువెలరీ, కాంబోలు మరియు బ్యాంగిల్స్ (Bangles) కు మాత్రమే వర్తిస్తుంది.
-                    </div>
+            <!-- OFFER BOX: now opens as a front popup -->
+            <div id="offerBox" style="display:none;"></div>
 
-                    <div class="free-gift-box-info">
-                        📢 మీరు ఏ నంబర్‌తో అయితే షాపింగ్ చేస్తున్నారో, ఆ నంబర్‌పైనే ప్రతీ ₹2000 కొనుగోలుకు ఉచిత గిఫ్ట్ వర్తిస్తుంది.
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -947,12 +1190,25 @@
             <h3>మీ షాపింగ్ కార్ట్</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
         </div>
+        <!-- This banner is visible to the customer at the TOP of the cart after any item is added. -->
+        <div class="cart-top-offer" id="cartTopOffer" onclick="goToExtraOfferItem(event)">
+            <div class="cart-top-offer-head">🛍️ ఇంకొక ఐటమ్ కూడా తీసుకోండి — ప్రత్యేక ఆఫర్ పొందండి!</div>
+            <div class="cart-top-offer-body">
+                <img id="cartTopOfferImg" class="cart-top-offer-img" src="extra-offer.png" alt="Special Offer Item" onerror="this.src=''; this.style.background='linear-gradient(135deg,#fff8dc,#fff)';">
+                <div class="cart-top-offer-copy">
+                    <div class="cart-top-offer-title" id="cartTopOfferTitle">✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి</div>
+                    <span class="cart-top-offer-text" id="cartTopOfferText">మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.</span>
+                </div>
+                <button type="button" class="cart-top-offer-btn" onclick="goToExtraOfferItem(event)">చూడండి →</button>
+            </div>
+        </div>
+
         <div class="cart-items" id="cart-items-container">
             <p style="text-align: center; color: #777; margin-top: 30px;">కార్ట్ ఖాళీగా ఉంది.</p>
         </div>
         <div class="cart-footer">
             <div id="cartDiscountNote" style="font-size:11px; color:#856404; background:#fff3cd; padding:6px; border-radius:4px; margin-bottom:8px; display:none;">
-                ⚠️ ఆఫర్ డిస్కౌంట్ కేవలం 1-Gram Gold, Combos & బ్యాంగిల్స్‌కు మాత్రమే అప్లై అవుతుంది.
+                ⚠️ ఆఫర్ డిస్కౌంట్ కేవలం 1-Gram Gold & Combos‌కు మాత్రమే అప్లై అవుతుంది.
             </div>
             
             <div style="display:flex; justify-content:space-between; font-size:13px; color:#555; margin-bottom:4px;">
@@ -960,17 +1216,44 @@
                 <span id="cart-subtotal-price">₹0</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:13px; color:#28a745; margin-bottom:8px;">
-                <span>డిస్కౌంట్ (Gold/Combos/Bangles):</span>
+                <span>డిస్కౌంట్ (1 Gram Gold/Combos):</span>
                 <span id="cart-discount-price">-₹0</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:16px; border-top:1px dashed #ccc; padding-top:6px; margin-bottom:15px;">
                 <span>మొత్తం చెల్లించాల్సింది:</span>
                 <span id="cart-total-price" style="color:var(--burgundy);">₹0</span>
             </div>
-            <button onclick="checkoutCart()" class="add-to-cart-btn" style="width:100%; padding:12px; font-size:14px;"><i class="fa-brands fa-whatsapp"></i> వాట్సాప్‌లో ఆర్డర్ చేయండి</button>
+            <button onclick="openOfferModal({type:'cart'})" class="add-to-cart-btn" style="width:100%; padding:12px; font-size:14px;"><i class="fa-brands fa-whatsapp"></i> వాట్సాప్‌లో ఆర్డర్ చేయండి</button>
         </div>
     </div>
 
+
+    <!-- OFFER POPUP MODAL -->
+    <div class="offer-modal" id="offerModal" onclick="closeOfferModal(event)">
+        <div class="offer-page" onclick="event.stopPropagation()">
+            <button class="offer-close-btn" onclick="closeOfferModal()" aria-label="Close">&times;</button>
+            <div style="text-align:center; font-size:34px;">🎁✨</div>
+            <h2 class="offer-page-title">ఆఫర్ చెక్ చేసుకోండి</h2>
+            <div class="offer-page-subtitle">మీ మొబైల్ నంబర్ ఎంటర్ చేస్తే మీకు వచ్చిన ప్రత్యేక డిస్కౌంట్ వెంటనే కనిపిస్తుంది</div>
+
+            <div class="offer-phone-row">
+                <input type="tel" id="modalUserPhone" placeholder="10 అంకెల మొబైల్ నంబర్" maxlength="10" inputmode="numeric" autocomplete="tel">
+                <button class="offer-check-btn" onclick="checkModalOffer()">చెక్ చేసుకోండి</button>
+            </div>
+            <div class="offer-error" id="modalPhoneError">⚠️ దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను ఎంటర్ చేయండి.</div>
+
+            <div class="offer-result-big" id="modalOfferResult">
+                <div style="font-size:14px; font-weight:900; color:var(--burgundy);">🎉 మీ నంబర్‌కు వచ్చిన ప్రత్యేక ఆఫర్</div>
+                <span class="offer-percent" id="modalDiscountPercent">5% OFF</span>
+                <div id="modalCartBaseText" style="font-size:13px; color:#555; font-weight:700;">కార్ట్‌లోని eligible items మీద</div>
+                <div class="offer-save" id="modalDiscountAmount">₹0 డిస్కౌంట్</div>
+                <div class="offer-final" id="modalFinalAmount">చెల్లించాల్సింది ₹0</div>
+                <div class="offer-gift" id="modalGiftName">🎁 ప్రత్యేక గిఫ్ట్</div>
+                <div class="offer-result-note">💡 ఈ డిస్కౌంట్ కేవలం <b>1 Gram Gold</b> మరియు <b>Combos</b> పై మాత్రమే వర్తిస్తుంది. ఇతర క్యాటగిరీలకు ఈ డిస్కౌంట్ వర్తించదు.</div>
+                <button class="offer-whatsapp-btn" id="modalWhatsAppBtn" onclick="continueOfferWhatsApp()"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat కొనసాగించండి</button>
+            </div>
+        </div>
+    </div>
 
     <!-- IMAGE ZOOM MODAL (POPUP) -->
     <div class="img-modal" id="imageModal" onclick="closeImageModal()">
@@ -999,7 +1282,7 @@
             <div class="footer-col">
                 <h3>సంప్రదించండి</h3>
                 <p><i class="fa-solid fa-location-dot"></i> <span id="footerAddress">చీరాల, ఆంధ్రప్రదేశ్</span></p>
-                <p><i class="fa-solid fa-phone"></i> <a id="footerPhoneLink" href="tel:93817 10402">+91 9876543210</a></p>
+                <p><i class="fa-solid fa-phone"></i> <a id="footerPhoneLink" href="tel:919876543210">+91 9876543210</a></p>
                 <p><i class="fa-solid fa-envelope"></i> contact@luckycollection.com</p>
             </div>
         </div>
@@ -1023,8 +1306,8 @@
            ================================================================ */
 
         const STORE_DATA = {
-            phone: "93817 10402",
-            whatsapp: "93817 10402",
+            phone: "919876543210",
+            whatsapp: "919876543210",
             address: "చీరాల, ఆంధ్రప్రదేశ్",
 
             categories: {
@@ -1169,6 +1452,14 @@
         let activeUserPhone = "";
         let activeDiscountPercent = 0;
         let activeGiftName = "";
+        let pendingChat = null;
+        const DISCOUNT_CATEGORIES = ['gold', 'combos'];
+        // Customer-facing cart recommendation. Replace extra-offer.png with your own product image.
+        const CART_EXTRA_OFFER = {
+            image: 'extra-offer.png',
+            title: '✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి',
+            text: 'మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.'
+        };
 
         Object.entries(STORE_DATA.categories).forEach(([key, cat]) => {
             cat.products.forEach((p, index) => {
@@ -1264,7 +1555,7 @@
                             <div class="btn-group">
                                 <button class="add-cart-icon-btn" onclick="addToCart(${prod.id})" title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
                                 <a href="tel:${callNo}" class="call-now-btn"><i class="fa-solid fa-phone"></i> కాల్</a>
-                                <button class="add-to-cart-btn" onclick="orderOnWhatsApp('${escapeJsString(prod.name)}', ${prod.newPrice})"><i class="fa-brands fa-whatsapp"></i> Chat</button>
+                                <button class="add-to-cart-btn" onclick="startDirectChat(${prod.id})"><i class="fa-brands fa-whatsapp"></i> Chat</button>
                             </div>
                         </div>
                     </div>
@@ -1305,6 +1596,7 @@
             const discountEl = document.getElementById('cart-discount-price');
             const totalEl = document.getElementById('cart-total-price');
             const cartNote = document.getElementById('cartDiscountNote');
+            const topOffer = document.getElementById('cartTopOffer');
 
             if (cart.length === 0) {
                 container.innerHTML = `<p style="text-align: center; color: #777; margin-top: 30px;">కార్ట్ ఖాళీగా ఉంది.</p>`;
@@ -1312,6 +1604,7 @@
                 discountEl.innerText = '-₹0';
                 totalEl.innerText = '₹0';
                 cartNote.style.display = 'none';
+                if (topOffer) topOffer.classList.remove('show');
                 return;
             }
 
@@ -1320,7 +1613,7 @@
 
             cart.forEach((item, index) => {
                 subtotal += item.newPrice;
-                if (['gold', 'haaram', 'earrings', 'bangles', 'combos'].includes(item.category)) discountableSubtotal += item.newPrice;
+                if (['gold', 'combos'].includes(item.category)) discountableSubtotal += item.newPrice;
                 else hasNonDiscountable = true;
 
                 container.innerHTML += `
@@ -1331,12 +1624,29 @@
                     </div>`;
             });
 
-            cartNote.style.display = hasNonDiscountable && activeDiscountPercent > 0 ? 'block' : 'none';
+            cartNote.style.display = activeDiscountPercent > 0 && discountableSubtotal > 0 ? 'block' : 'none';
+            // Always show the recommendation at the TOP of the cart for the customer.
+            if (topOffer) {
+                topOffer.classList.add('show');
+                const img = document.getElementById('cartTopOfferImg');
+                const title = document.getElementById('cartTopOfferTitle');
+                const text = document.getElementById('cartTopOfferText');
+                if (img) img.src = CART_EXTRA_OFFER.image;
+                if (title) title.innerText = CART_EXTRA_OFFER.title;
+                if (text) text.innerText = CART_EXTRA_OFFER.text;
+            }
             const discountAmount = Math.round((discountableSubtotal * activeDiscountPercent) / 100);
             const finalTotal = subtotal - discountAmount;
             subtotalEl.innerText = `₹${subtotal}`;
             discountEl.innerText = `-₹${discountAmount} (${activeDiscountPercent}%)`;
             totalEl.innerText = `₹${finalTotal}`;
+        }
+
+        function goToExtraOfferItem(event) {
+            if (event) event.stopPropagation();
+            // Send the customer to the Combos section where the extra offer item can be viewed.
+            filterAndScroll('combos');
+            toggleCart();
         }
 
         function removeFromCart(index) {
@@ -1350,56 +1660,194 @@
             else sidebar.classList.toggle('open');
         }
 
-        function checkDiscountOffer() {
-            const inputEl = document.getElementById('userPhone');
-            const errorEl = document.getElementById('phoneError');
-            const phoneVal = inputEl.value.trim();
-            const phoneRegex = /^[6-9]\d{9}$/;
+        function getStableOffer(phoneVal) {
+            // Same mobile number always gets the same offer.
+            // Different valid mobile numbers can get a different offer.
+            let hash = 0;
+            for (let i = 0; i < phoneVal.length; i++) {
+                hash = ((hash << 5) - hash + phoneVal.charCodeAt(i)) | 0;
+            }
+            hash = Math.abs(hash);
+            const percents = [5, 15, 20];
+            const percent = percents[hash % percents.length];
+            const gift = giftList[hash % giftList.length];
+            return { percent, gift };
+        }
 
+        function getCartTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
+            const discountableSubtotal = cart
+                .filter(item => DISCOUNT_CATEGORIES.includes(item.category))
+                .reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
+            const discountAmount = Math.round((discountableSubtotal * activeDiscountPercent) / 100);
+            const total = subtotal - discountAmount;
+            return { subtotal, discountableSubtotal, discountAmount, total };
+        }
+
+        function getIndiaDateTime() {
+            return new Intl.DateTimeFormat('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit',
+                hour12: true
+            }).format(new Date());
+        }
+
+        function openOfferModal(chatData = null) {
+            pendingChat = chatData;
+            const modal = document.getElementById('offerModal');
+            const input = document.getElementById('modalUserPhone');
+            const result = document.getElementById('modalOfferResult');
+            const error = document.getElementById('modalPhoneError');
+            const waBtn = document.getElementById('modalWhatsAppBtn');
+            modal.classList.add('show');
+            result.classList.remove('show');
+            error.style.display = 'none';
+            waBtn.classList.toggle('show', !!pendingChat);
+            input.value = activeUserPhone || '';
+            setTimeout(() => input.focus(), 80);
+        }
+
+        function closeOfferModal(event = null) {
+            if (event && event.target !== document.getElementById('offerModal')) return;
+            document.getElementById('offerModal').classList.remove('show');
+            pendingChat = null;
+        }
+
+        function checkModalOffer() {
+            const input = document.getElementById('modalUserPhone');
+            const error = document.getElementById('modalPhoneError');
+            const phoneVal = cleanPhone(input.value);
+            const phoneRegex = /^[6-9]\d{9}$/;
             if (!phoneRegex.test(phoneVal)) {
-                errorEl.style.display = 'block';
-                document.getElementById('offerResult').style.display = 'none';
+                error.style.display = 'block';
+                document.getElementById('modalOfferResult').classList.remove('show');
                 return;
             }
 
-            errorEl.style.display = 'none';
+            error.style.display = 'none';
             activeUserPhone = phoneVal;
-            let numSum = 0;
-            for (let i = 0; i < phoneVal.length; i++) numSum += parseInt(phoneVal.charAt(i));
-            const percents = [5, 15, 20];
-            activeDiscountPercent = percents[numSum % percents.length];
-            activeGiftName = giftList[numSum % giftList.length];
-            document.getElementById('giftName').innerText = activeGiftName;
-            document.getElementById('discountValueText').innerText = `${activeDiscountPercent}% OFF (ఆన్‌లైన్ డిస్కౌంట్)`;
-            document.getElementById('offerResult').style.display = 'block';
+            const offer = getStableOffer(phoneVal);
+            activeDiscountPercent = offer.percent;
+            activeGiftName = offer.gift;
+
+            // Keep the old variables/UI in sync for existing cart logic.
+            const oldInput = document.getElementById('userPhone');
+            if (oldInput) oldInput.value = phoneVal;
+            const oldResult = document.getElementById('offerResult');
+            if (oldResult) oldResult.style.display = 'none';
+
+            let offerBase = 0;
+            let offerDiscount = 0;
+            let offerFinal = 0;
+            let offerLabel = '1 Gram Gold / Combos మీద మాత్రమే డిస్కౌంట్ వర్తిస్తుంది';
+
+            if (pendingChat && pendingChat.type === 'product') {
+                const product = products.find(p => p.id === pendingChat.productId);
+                if (product && DISCOUNT_CATEGORIES.includes(product.category)) {
+                    offerBase = Number(product.newPrice || 0);
+                    offerDiscount = Math.round(offerBase * activeDiscountPercent / 100);
+                    offerFinal = offerBase - offerDiscount;
+                    offerLabel = `ఈ ప్రొడక్ట్ ధర: ₹${offerBase.toLocaleString('en-IN')}`;
+                }
+            } else {
+                const totals = getCartTotals();
+                offerBase = totals.discountableSubtotal;
+                offerDiscount = totals.discountAmount;
+                offerFinal = totals.total;
+                offerLabel = cart.length
+                    ? `1 Gram Gold / Combos eligible మొత్తం: ₹${totals.discountableSubtotal.toLocaleString('en-IN')}`
+                    : '1 Gram Gold / Combos మీద మాత్రమే డిస్కౌంట్ వర్తిస్తుంది';
+            }
+
+            document.getElementById('modalDiscountPercent').innerText = `${activeDiscountPercent}% OFF`;
+            document.getElementById('modalDiscountAmount').innerText = `₹${offerDiscount.toLocaleString('en-IN')} డిస్కౌంట్`;
+            document.getElementById('modalFinalAmount').innerText = (offerBase > 0)
+                ? `చెల్లించాల్సింది ₹${offerFinal.toLocaleString('en-IN')}`
+                : 'కార్ట్‌లో eligible ఐటమ్స్ యాడ్ చేసిన తర్వాత డిస్కౌంట్ మొత్తం ఆటోమేటిక్‌గా చూపిస్తుంది';
+            document.getElementById('modalCartBaseText').innerText = offerLabel;
+            document.getElementById('modalGiftName').innerText = `🎁 ${activeGiftName}`;
+            document.getElementById('modalOfferResult').classList.add('show');
+            document.getElementById('modalWhatsAppBtn').classList.toggle('show', !!pendingChat);
             updateCartUI();
+            launchFrontCelebration();
+        }
+
+        function launchFrontCelebration() {
+            const old = document.querySelector('.front-celebration-layer');
+            if (old) old.remove();
+            const layer = document.createElement('div');
+            layer.className = 'front-celebration-layer';
+            layer.innerHTML = '<div class="front-blast-center"></div><div class="front-celebration-text">🎉 SPECIAL OFFER 🎉</div>';
+            const count = window.innerWidth < 600 ? 70 : 110;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('span');
+                p.className = 'front-blast-particle';
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 130 + Math.random() * Math.max(window.innerWidth, window.innerHeight) * .62;
+                p.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+                p.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+                p.style.setProperty('--rot', `${Math.round(Math.random() * 900 - 450)}deg`);
+                p.style.background = ['#ff0055','#ffb300','#00c6ff','#25D366','#8e44ad','#ffffff'][i % 6];
+                p.style.animationDelay = `${Math.random() * .18}s`;
+                layer.appendChild(p);
+            }
+            document.body.appendChild(layer);
+            setTimeout(() => layer.remove(), 2300);
+        }
+
+        function startDirectChat(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            openOfferModal({ type: 'product', productId });
+        }
+
+        function continueOfferWhatsApp() {
+            if (!activeUserPhone) return;
+            if (!pendingChat) return;
+            const chat = pendingChat;
+            const dateTime = getIndiaDateTime();
+            const offer = `${activeDiscountPercent}% OFF`;
+
+            if (chat.type === 'product') {
+                const product = products.find(p => p.id === chat.productId);
+                if (!product) return;
+                const eligible = DISCOUNT_CATEGORIES.includes(product.category);
+                const discountAmount = eligible ? Math.round(product.newPrice * activeDiscountPercent / 100) : 0;
+                const finalPrice = product.newPrice - discountAmount;
+                const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్‌లో ఈ ప్రొడక్ట్ చూశాను:%0A%0A*ప్రొడక్ట్:* ${encodeURIComponent(product.name)}%0A*ధర:* ₹${product.newPrice}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(dateTime)}%0A*ఆఫర్:* ${eligible ? offer : 'ఈ క్యాటగిరీకి డిస్కౌంట్ వర్తించదు'}%0A*డిస్కౌంట్:* ₹${discountAmount}%0A*ఆఫర్ తర్వాత ధర:* ₹${finalPrice}%0A%0Aనేను దీని గురించి సమాచారం / ఆర్డర్ పొందాలనుకుంటున్నాను.`;
+                window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
+            } else if (chat.type === 'cart') {
+                checkoutCart(true);
+            }
         }
 
         function orderOnWhatsApp(productName, price) {
-            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్‌లో ఈ ప్రొడక్ట్ చూశాను:%0A%0A*ప్రొడక్ట్:* ${encodeURIComponent(productName)}%0A*ధర:* ₹${price}%0A%0Aనేను దీని గురించి సమాచారం / ఆర్డర్ పొందాలనుకుంటున్నాను.`;
-            window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
+            // Kept for compatibility with any older inline button.
+            const found = products.find(p => p.name === productName);
+            if (found) startDirectChat(found.id);
         }
 
-        function checkoutCart() {
+        function checkoutCart(fromOfferButton = false) {
             if (cart.length === 0) {
                 alert('మీ కార్ట్‌లో ప్రొడక్ట్స్ ఏవీ లేవు!');
                 return;
             }
-            if (!activeUserPhone) {
-                alert('దయచేసి ముందుగా మీ 10 అంకెల నంబర్ ఎంటర్ చేసి ఉచిత గిఫ్ట్ చెక్ చేసుకోండి!');
-                toggleOfferBox();
-                document.getElementById('userPhone').focus();
+            if (!activeUserPhone && !fromOfferButton) {
+                openOfferModal({ type: 'cart' });
                 return;
             }
+            if (!activeUserPhone) return;
 
+            const totals = getCartTotals();
             const itemsList = cart.map(item => `- ${encodeURIComponent(item.name)} (₹${item.newPrice})`).join('%0A');
-            const subtotal = cart.reduce((sum, item) => sum + item.newPrice, 0);
-            const discountableSubtotal = cart.filter(item => ['gold', 'haaram', 'earrings', 'bangles', 'combos'].includes(item.category)).reduce((sum, item) => sum + item.newPrice, 0);
-            const discountAmount = Math.round((discountableSubtotal * activeDiscountPercent) / 100);
-            const total = subtotal - discountAmount;
-            const couponText = activeDiscountPercent > 0 ? `%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*ఆఫర్ డిస్కౌంట్:* ${activeDiscountPercent}% OFF (Gold/Combos/Bangles కి మాత్రమే)%0A*ఉచిత గిఫ్ట్:* ${encodeURIComponent(activeGiftName)}%0A*తగ్గిన మొత్తం:* -₹${discountAmount}` : "";
-            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A${itemsList}%0A%0A*సబ్ టోటల్:* ₹${subtotal}${couponText}%0A*నెట్ చెల్లించాల్సింది:* ₹${total}`;
+            const couponText = activeDiscountPercent > 0
+                ? `%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(getIndiaDateTime())}%0A*ఆఫర్:* ${activeDiscountPercent}% OFF%0A*డిస్కౌంట్ వర్తించే మొత్తం:* ₹${totals.discountableSubtotal}%0A*డిస్కౌంట్:* -₹${totals.discountAmount}%0A*ఉచిత గిఫ్ట్:* ${encodeURIComponent(activeGiftName)}`
+                : '';
+            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A${itemsList}%0A%0A*సబ్ టోటల్:* ₹${totals.subtotal}${couponText}%0A*నెట్ చెల్లించాల్సింది:* ₹${totals.total}`;
             window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
+            document.getElementById('offerModal').classList.remove('show');
+            pendingChat = null;
         }
 
         function openImageModal(imgSrc, title, fallbackSrc = '') {
@@ -1426,7 +1874,23 @@
         }
 
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') closeImageModal();
+            if (event.key === 'Escape') {
+                closeImageModal();
+                document.getElementById('offerModal').classList.remove('show');
+                pendingChat = null;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalPhone = document.getElementById('modalUserPhone');
+            if (modalPhone) {
+                modalPhone.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') checkModalOffer();
+                });
+                modalPhone.addEventListener('input', function() {
+                    this.value = cleanPhone(this.value).slice(0, 10);
+                });
+            }
         });
 
         window.addEventListener('load', () => {
