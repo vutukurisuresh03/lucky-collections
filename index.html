@@ -6,7 +6,7 @@
     <title>Lucky Collections | Royal Elegance & Luxury Fashion</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Malayalam:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1051,13 +1051,375 @@
         }
 
     </style>
+
+<style id="professional-modern-overrides">
+  :root{
+    --gold:#c9a227;
+    --gold-soft:#f1df9b;
+    --burgundy:#3a0d18;
+    --burgundy-2:#6b1b2a;
+    --ink:#171717;
+    --muted:#6b6670;
+    --surface:#ffffff;
+    --surface-2:#fbf8f3;
+    --line:rgba(58,13,24,.10);
+    --shadow:0 18px 50px rgba(33,20,24,.10);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(circle at 10% 0%,rgba(201,162,39,.08),transparent 28rem),
+      linear-gradient(180deg,#fffdf9 0%,#fbf8f3 100%);
+    color:var(--ink);
+  }
+  .language-switcher{
+    position:relative;
+    z-index:1200;
+    background:rgba(58,13,24,.97);
+    border-bottom:1px solid rgba(241,223,155,.28);
+    color:#fff;
+  }
+  .language-inner{
+    max-width:1440px;
+    margin:auto;
+    padding:8px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .language-label{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.2px;
+    opacity:.9;
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .language-buttons{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .lang-btn{
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    border-radius:999px;
+    padding:6px 11px;
+    font:600 12px/1.1 Poppins,'Noto Sans Telugu',sans-serif;
+    cursor:pointer;
+    transition:.22s ease;
+  }
+  .lang-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+  .lang-btn.active{
+    background:linear-gradient(135deg,var(--gold),#e5c75b);
+    color:#2a1b00;
+    border-color:transparent;
+    box-shadow:0 5px 16px rgba(201,162,39,.28);
+  }
+  header{
+    max-width:1440px;
+    margin:0 auto;
+    padding:15px 5%;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 10px 35px rgba(33,20,24,.06);
+    backdrop-filter:blur(16px);
+    background:rgba(255,255,255,.94);
+  }
+  .logo h1{font-size:29px;letter-spacing:-.5px}
+  .logo span{letter-spacing:3.5px}
+  nav ul{gap:7px}
+  .nav-btn,.combo-btn{
+    border:0;
+    box-shadow:none;
+    animation:none;
+    transform:none;
+    filter:none;
+    padding:9px 13px;
+    border-radius:999px;
+    font-size:12px;
+  }
+  .nav-btn:hover,.combo-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.04);
+    box-shadow:0 8px 20px rgba(33,20,24,.12);
+  }
+  .combo-btn{background:linear-gradient(135deg,#a9143c,#e34b63)!important}
+  .btn-gold-blink{background:linear-gradient(135deg,#b68a16,#e2bd50)!important}
+  .btn-haaram-blink{background:linear-gradient(135deg,#66328a,#9a67ba)!important}
+  .btn-bangles-blink{background:linear-gradient(135deg,#b82262,#e55d8f)!important}
+  .btn-earrings-blink{background:linear-gradient(135deg,#0879ad,#27b9e6)!important}
+  .btn-maggam-blink{background:linear-gradient(135deg,#08796f,#2bbd9a)!important}
+  .btn-beauty-blink{background:linear-gradient(135deg,#c34a28,#e59a32)!important}
+  .header-icons{gap:14px}
+  .cart-icon{
+    width:43px;height:43px;border-radius:50%;
+    display:grid;place-items:center;
+    background:#f7f3ec;border:1px solid var(--line);
+  }
+  .hero{
+    min-height:560px;
+    height:62vh;
+    padding:0 8%;
+    background-position:center;
+  }
+  .hero-content{
+    max-width:700px;
+    padding:34px;
+    border:1px solid rgba(255,255,255,.16);
+    background:linear-gradient(135deg,rgba(20,5,9,.68),rgba(20,5,9,.18));
+    border-radius:26px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 25px 70px rgba(0,0,0,.18);
+  }
+  .hero-content h2{font-size:clamp(32px,4.5vw,58px);letter-spacing:-1px}
+  .hero-content p{font-size:16px;line-height:1.8;max-width:620px}
+  .btn-gold{
+    border-radius:999px;
+    padding:13px 25px;
+    box-shadow:0 10px 25px rgba(201,162,39,.25);
+  }
+  .magic-rental-bar{
+    border:0;
+    background:linear-gradient(90deg,#35101a,#641d2d,#35101a);
+    box-shadow:none;
+  }
+  .about-founder{
+    max-width:1440px;
+    margin:0 auto;
+    padding:76px 8%;
+    gap:64px;
+    background:transparent;
+    border:0;
+  }
+  .founder-img-box img{
+    max-width:410px;height:410px;border-radius:26px;
+    border:6px solid #fff;
+    outline:1px solid rgba(201,162,39,.45);
+    box-shadow:var(--shadow);
+  }
+  .founder-info h2{font-size:38px;line-height:1.18}
+  .founder-info p{font-size:15px;line-height:1.9;color:var(--muted)}
+  .services-grid-list{
+    gap:10px;padding:16px;border-radius:18px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.72);
+  }
+  .services-grid-list div{
+    padding:10px 8px;border-radius:10px;background:#fff;
+  }
+  .magic-offer-btn{
+    border:1px solid rgba(241,223,155,.8);
+    border-radius:16px;
+    padding:15px 20px;
+    animation:none;
+    box-shadow:0 14px 32px rgba(58,13,24,.15);
+  }
+  .magic-offer-btn:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(58,13,24,.2)}
+  .categories,.products{max-width:1440px;margin:0 auto;padding:70px 8%}
+  .section-title{font-size:36px;margin-bottom:38px;letter-spacing:-.5px}
+  .section-title::after{height:3px;width:74px;border-radius:10px}
+  .category-grid{gap:18px}
+  .cat-card{
+    padding:19px 13px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:0 8px 24px rgba(33,20,24,.06);
+    background:rgba(255,255,255,.88);
+  }
+  .cat-card:hover,.cat-card.active-cat{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(58,13,24,.11);
+  }
+  .combo-cat-card{
+    animation:none!important;
+    box-shadow:0 12px 30px rgba(175,28,55,.18)!important;
+  }
+  .product-grid{gap:24px}
+  .product-card{
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(33,20,24,.07);
+    transition:.25s ease;
+  }
+  .product-card:hover{transform:translateY(-7px);box-shadow:0 22px 45px rgba(33,20,24,.12)}
+  .product-img{height:300px;background:linear-gradient(180deg,#fff,#faf7f0)}
+  .product-info{padding:18px}
+  .product-info h3{font-size:14px;line-height:1.45}
+  .new-price{font-size:18px}
+  .add-cart-icon-btn,.add-to-cart-btn,.call-now-btn{border-radius:10px!important}
+  .add-cart-icon-btn{padding:10px 12px}
+  .add-to-cart-btn,.call-now-btn{padding:10px 8px}
+  .cart-sidebar{
+    width:min(420px,100vw);
+    padding:22px;
+    border-radius:24px 0 0 24px;
+    box-shadow:-20px 0 60px rgba(0,0,0,.16);
+  }
+  .cart-header{padding-bottom:14px}
+  .offer-page{
+    width:min(560px,96vw);
+    border:1px solid rgba(201,162,39,.55);
+    border-radius:28px;
+    box-shadow:0 30px 90px rgba(0,0,0,.32);
+  }
+  .offer-check-btn,.offer-whatsapp-btn{border-radius:12px}
+  footer{background:linear-gradient(135deg,#300b15,#571626);padding-top:58px}
+  .footer-col h3{font-size:22px}
+  .copyright{padding-top:20px}
+  @media(max-width:900px){
+    .language-inner{padding:7px 3%}
+    header{padding:12px 3%}
+    .hero{min-height:520px;padding:0 5%}
+    .hero-content{padding:24px}
+    .about-founder,.categories,.products{padding:52px 5%}
+    .founder-info h2{font-size:30px}
+  }
+  @media(max-width:560px){
+    .language-label{display:none}
+    .lang-btn{padding:6px 9px;font-size:11px}
+    .hero{height:auto;min-height:540px}
+    .hero-content h2{font-size:34px}
+    .section-title{font-size:29px}
+    .founder-img-box img{height:300px}
+    .product-img{height:250px}
+  }
+</style>
+
+
+<style id="premium-phone-nav-upgrade">
+/* ===== Premium phone + navigation upgrade ===== */
+:root{
+  --phone-blue:#1666d9;
+  --phone-gold:#d4af37;
+  --phone-dark:#173b7a;
+}
+
+/* Category navigation: premium motion, NOT blinking */
+nav ul{overflow-x:auto;overflow-y:visible;scrollbar-width:none;padding:4px 2px;}
+nav ul::-webkit-scrollbar{display:none}
+.nav-btn,.combo-btn{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.32)!important;
+  box-shadow:0 5px 16px rgba(30,20,20,.10)!important;
+  transition:transform .25s ease,box-shadow .25s ease,filter .25s ease!important;
+}
+.nav-btn::after,.combo-btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.35) 48%,transparent 70%);
+  transform:translateX(-130%);
+  transition:transform .7s ease;
+  z-index:-1;
+}
+.nav-btn:hover::after,.combo-btn:hover::after,
+.nav-btn:focus-visible::after,.combo-btn:focus-visible::after{transform:translateX(130%)}
+.nav-btn:hover,.combo-btn:hover{transform:translateY(-3px) scale(1.015)!important;}
+.nav-btn:active,.combo-btn:active{transform:translateY(0) scale(.98)!important}
+/* Active/selected category marker */
+.nav-btn.nav-selected,.combo-btn.nav-selected{
+  outline:2px solid rgba(212,175,55,.75);
+  outline-offset:2px;
+  box-shadow:0 0 0 4px rgba(212,175,55,.10),0 10px 26px rgba(60,30,30,.18)!important;
+  filter:saturate(1.12) brightness(1.06);
+}
+
+/* Phone number as a real CTA button */
+#footerPhoneLink,
+.rental-call{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none!important;
+  color:#fff!important;
+  background:linear-gradient(135deg,var(--phone-blue),#2d8cff)!important;
+  border:1px solid rgba(255,255,255,.32)!important;
+  border-radius:999px!important;
+  padding:10px 16px!important;
+  font-weight:800!important;
+  box-shadow:0 8px 22px rgba(22,102,217,.28)!important;
+  transition:transform .22s ease,box-shadow .22s ease,filter .22s ease!important;
+}
+#footerPhoneLink:hover,.rental-call:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 12px 28px rgba(22,102,217,.38)!important}
+#footerPhoneLink i,.rental-call i{animation:phoneIconPulse 1.8s ease-in-out infinite}
+@keyframes phoneIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+
+/* Fixed phone button stays visible while scrolling */
+.floating-call-btn{
+  position:fixed;
+  right:20px;
+  bottom:22px;
+  z-index:1500;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:13px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  color:#fff!important;
+  font:700 14px/1 Poppins,'Noto Sans Telugu',sans-serif;
+  background:linear-gradient(135deg,#1261cf,#2f91ff);
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:0 10px 30px rgba(22,102,217,.35),0 0 0 5px rgba(22,102,217,.10);
+  transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+}
+.floating-call-btn::before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border-radius:inherit;
+  border:2px solid rgba(22,102,217,.32);
+  animation:callRing 2.4s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes callRing{0%{transform:scale(.92);opacity:.8}70%,100%{transform:scale(1.22);opacity:0}}
+.floating-call-btn i{font-size:16px;animation:phoneIconPulse 1.8s ease-in-out infinite}
+.floating-call-btn:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.06);box-shadow:0 15px 36px rgba(22,102,217,.45),0 0 0 6px rgba(22,102,217,.12)}
+.floating-call-btn:active{transform:scale(.97)}
+
+/* Keep phone CTA neat on mobile */
+@media(max-width:700px){
+  nav ul{width:100%;justify-content:flex-start;flex-wrap:nowrap;padding-bottom:7px}
+  nav ul li{flex:0 0 auto}
+  .floating-call-btn{right:14px;bottom:14px;padding:12px 15px;font-size:13px}
+  #footerPhoneLink{padding:9px 14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .floating-call-btn::before,#footerPhoneLink i,.rental-call i{animation:none!important}
+  .nav-btn,.combo-btn{transition:none!important}
+}
+</style>
+
 </head>
 <body>
+
+    <!-- FIXED CALL CTA: visible during page scrolling -->
+    <a id="floatingCallBtn" class="floating-call-btn" href="tel:919876543210" aria-label="Call Lucky Collections">
+        <i class="fa-solid fa-phone"></i><span id="floatingCallText">Call Now</span>
+    </a>
 
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="top-bar">
         ✨ ప్రత్యేక ఆఫర్: చీరాల & ఆన్లైన్ కస్టమర్లందరికీ ఉచిత డెలివరీ! ✨
     </div>
+
+
+<div class="language-switcher" aria-label="Language selector">
+  <div class="language-inner">
+    <span class="language-label"><i class="fa-solid fa-language"></i><span id="languageLabel">Language</span></span>
+    <div class="language-buttons" role="group" aria-label="Choose language">
+      <button type="button" class="lang-btn active" data-lang="te">తెలుగు</button>
+      <button type="button" class="lang-btn" data-lang="en">English</button>
+      <button type="button" class="lang-btn" data-lang="hi">हिन्दी</button>
+      <button type="button" class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
+      <button type="button" class="lang-btn" data-lang="ml">മലയാളം</button>
+      <button type="button" class="lang-btn" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
+</div>
 
     <!-- MAIN HEADER WITH MULTI-COLOR BLINKING BUTTONS -->
     <header>
@@ -1123,7 +1485,7 @@
 
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">
                 <button onclick="scrollToProducts()" class="btn-gold">కలెక్షన్స్ చూడండి</button>
-                <a href="tel:919876543210" class="btn-gold" style="background:#007bff;"><i class="fa-solid fa-phone"></i> కాల్ చేయండి</a>
+                <a id="founderPhoneBtn" href="tel:919876543210" class="btn-gold founder-phone-btn"><i class="fa-solid fa-phone"></i> కాల్ చేయండి</a>
             </div>
 
             <!-- SPARKING MAGICAL ANIMATED OFFER BUTTON -->
@@ -1517,6 +1879,11 @@
                 footerPhoneLink.textContent = displayCall;
             }
 
+            const floatingCallBtn = document.getElementById('floatingCallBtn');
+            if (floatingCallBtn) floatingCallBtn.href = 'tel:' + callNo;
+            const founderPhoneBtn = document.getElementById('founderPhoneBtn');
+            if (founderPhoneBtn) founderPhoneBtn.href = 'tel:' + callNo;
+
             const rentalPhoneLink = document.getElementById('rentalPhoneLink');
             if (rentalPhoneLink) {
                 rentalPhoneLink.href = 'tel:' + callNo;
@@ -1577,8 +1944,24 @@
         }
 
         function filterAndScroll(cat) {
+            // Stop any ongoing scroll and land neatly below the sticky header.
+            try { window.scrollTo({top: window.scrollY, behavior: 'auto'}); } catch(e) {}
             filterProducts(cat);
-            scrollToProducts();
+            document.querySelectorAll('.nav-btn,.combo-btn').forEach(btn => btn.classList.remove('nav-selected'));
+            const navMap = {combos:'.combo-btn',gold:'.btn-gold-blink',haaram:'.btn-haaram-blink',bangles:'.btn-bangles-blink',earrings:'.btn-earrings-blink',maggam:'.btn-maggam-blink',beauty:'.btn-beauty-blink'};
+            const selected=document.querySelector(navMap[cat]);
+            if(selected){
+              selected.classList.add('nav-selected');
+              selected.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+            }
+            const target=document.getElementById('products');
+            if(target){
+              const header=document.querySelector('header');
+              const offset=(header?.getBoundingClientRect().height||70)+18;
+              const y=target.getBoundingClientRect().top+window.pageYOffset-offset;
+              window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+              setTimeout(()=>window.scrollTo({top:Math.max(0,y),behavior:'smooth'}),90);
+            }
         }
 
         function addToCart(productId) {
@@ -1898,5 +2281,483 @@
             filterProducts('combos', document.getElementById('cat-combos'));
         });
     </script>
+
+<script id="professional-multilingual-engine">
+(function(){
+  const LANG_KEY = 'luckyCollectionsLanguage';
+  const LANGS = ['te','en','hi','kn','ml','ta'];
+  let currentLang = localStorage.getItem(LANG_KEY) || 'te';
+
+  const UI = {
+    te:{
+      language:'భాష', offerBar:'✨ ప్రత్యేక ఆఫర్: చీరాల & ఆన్లైన్ కస్టమర్లందరికీ ఉచిత డెలివరీ! ✨',
+      combo:'🔥 కాంబో ఆఫర్స్', gold:'1 Gram Gold', haaram:'హారాలు', bangles:'గాజులు',
+      earrings:'ఇయర్ రింగ్స్', maggam:'మగ్గం వర్క్స్', beauty:'బ్యూటీ & పెర్ఫ్యూమ్స్',
+      heroKicker:'లగ్జరీ & రాయల్ కలెక్షన్',
+      heroTitle:'1 Gram Gold, ముత్యాల-వజ్రాల హారాలు & మగ్గం వర్క్స్',
+      heroText:'మీ రూపాన్ని మరింత కాంతివంతంగా, రాయల్‌గా మార్చే అత్యుత్తమ ట్రెడిషనల్ డిజైన్స్ మరియు రాయల్ ఆభరణాలు.',
+      shop:'Shop Now', rental:'వివాహాది శుభకార్యాలకి 1-Gram Gold నగలను అద్దెకు (Rent) ఇవ్వబడును. సంప్రదించండి:',
+      quality:'QUALITY & TRUST', founder:'లక్కీ కలెక్షన్ ప్రొప్రైటర్ & మేనేజ్‌మెంట్',
+      about:'మా లక్కీ కలెక్షన్ లో ప్రతీ నగ అత్యంత నాణ్యమైన గోల్డ్ ప్లేటింగ్ మరియు ట్రెడిషనల్ డిజైన్స్‌తో రూపొందించబడింది. చీరాల ప్రాంతంలో విశేష ఆదరణ పొందిన మా బ్రాండ్, ఇప్పుడు ఆన్‌లైన్ ద్వారా దేశ వ్యాప్తంగా కస్టమర్లకు సేవలు అందిస్తోంది.',
+      services:['1 Gram Gold ఆభరణాలు','పెళ్లి ఆభరణాలు అద్దెకు (Rent)','డిజైనర్ మగ్గం వర్క్ బ్లౌజులు','ఫ్యాన్సీ & మ్యాచింగ్ బ్యాంగిల్స్','లగ్జరీ పెర్ఫ్యూమ్స్ & బ్యూటీ కేర్','100% గ్యారెంటీ క్వాలిటీ'],
+      viewCollections:'కలెక్షన్స్ చూడండి', call:'కాల్ చేయండి',
+      giftBtn:'✨ ప్రతీ ₹2000 కొనుగోలుపై ఉచిత గిఫ్ట్! మీ గిఫ్ట్ ఏంటో చూడండి ✨',
+      shopCategory:'షాప్ బై క్యాటగిరీ', cart:'మీ షాపింగ్ కార్ట్', empty:'కార్ట్ ఖాళీగా ఉంది.',
+      cartOfferHead:'🛍️ ఇంకొక ఐటమ్ కూడా తీసుకోండి — ప్రత్యేక ఆఫర్ పొందండి!',
+      cartOfferTitle:'✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి',
+      cartOfferText:'మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.',
+      view:'చూడండి →', discountNote:'⚠️ ఆఫర్ డిస్కౌంట్ కేవలం 1-Gram Gold & Combos‌కు మాత్రమే అప్లై అవుతుంది.',
+      subtotal:'సబ్ టోటల్:', discount:'డిస్కౌంట్ (1 Gram Gold/Combos):', total:'మొత్తం చెల్లించాల్సింది:',
+      orderWhatsapp:'వాట్సాప్‌లో ఆర్డర్ చేయండి', offerTitle:'ఆఫర్ చెక్ చేసుకోండి',
+      offerSubtitle:'మీ మొబైల్ నంబర్ ఎంటర్ చేస్తే మీకు వచ్చిన ప్రత్యేక డిస్కౌంట్ వెంటనే కనిపిస్తుంది',
+      phonePlaceholder:'10 అంకెల మొబైల్ నంబర్', check:'చెక్ చేసుకోండి',
+      phoneError:'⚠️ దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను ఎంటర్ చేయండి.',
+      specialOffer:'🎉 మీ నంబర్‌కు వచ్చిన ప్రత్యేక ఆఫర్', discountWord:'డిస్కౌంట్',
+      payable:'చెల్లించాల్సింది', specialGift:'🎁 ప్రత్యేక గిఫ్ట్',
+      offerRule:'💡 ఈ డిస్కౌంట్ కేవలం 1 Gram Gold మరియు Combos పై మాత్రమే వర్తిస్తుంది. ఇతర క్యాటగిరీలకు ఈ డిస్కౌంట్ వర్తించదు.',
+      whatsappContinue:'WhatsApp Chat కొనసాగించండి', quickLinks:'త్వరిత లింకులు', contact:'సంప్రదించండి',
+      footerAbout:'అత్యుత్తమ నాణ్యత కలిగిన 1 Gram Gold ఆభరణాలు, మగ్గం వర్క్స్ మరియు ప్రీమియం బ్యూటీ కేర్ ఉత్పత్తులకు నమ్మకమైన వేదిక.',
+      matching:'మ్యాచింగ్ గాజులు', address:'చీరాల, ఆంధ్రప్రదేశ్', rights:'All Rights Reserved',
+      noProducts:'ఈ క్యాటగిరీలో ప్రొడక్ట్స్ లేవు', product:'ప్రొడక్ట్', price:'ధర', mobile:'మొబైల్ నంబర్',
+      dateTime:'తేదీ & సమయం', afterOffer:'ఆఫర్ తర్వాత ధర', information:'నేను దీని గురించి సమాచారం / ఆర్డర్ పొందాలనుకుంటున్నాను.',
+      cartOrder:'నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:',
+      eligible:'1 Gram Gold / Combos eligible మొత్తం:', onlyEligible:'1 Gram Gold / Combos మీద మాత్రమే డిస్కౌంట్ వర్తిస్తుంది',
+      cartEligible:'కార్ట్‌లో eligible items మీద', addToCart:'Add to Cart', callShort:'కాల్', chat:'Chat',
+      specialOfferShort:'🎉 SPECIAL OFFER 🎉'
+    },
+    en:{
+      language:'Language', offerBar:'✨ Special Offer: Free Delivery for Chirala & Online Customers! ✨',
+      combo:'🔥 Combo Offers', gold:'1 Gram Gold', haaram:'Haarams', bangles:'Bangles',
+      earrings:'Earrings', maggam:'Maggam Works', beauty:'Beauty & Perfumes',
+      heroKicker:'LUXURY & ROYAL COLLECTION',
+      heroTitle:'1 Gram Gold, Pearl-Diamond Haarams & Maggam Works',
+      heroText:'Premium traditional designs and royal jewellery that make your look brighter, elegant and timeless.',
+      shop:'Shop Now', rental:'1-Gram Gold jewellery available for rent for weddings & special occasions. Contact:',
+      quality:'QUALITY & TRUST', founder:'Lucky Collections Proprietor & Management',
+      about:'At Lucky Collections, every piece is created with quality gold plating and traditional designs. Our brand, loved in the Chirala region, now serves customers across India online.',
+      services:['1 Gram Gold Jewellery','Wedding Jewellery on Rent','Designer Maggam Work Blouses','Fancy & Matching Bangles','Luxury Perfumes & Beauty Care','100% Guaranteed Quality'],
+      viewCollections:'View Collections', call:'Call Now',
+      giftBtn:'✨ Free Gift on every ₹2000 purchase! See what your gift is ✨',
+      shopCategory:'SHOP BY CATEGORY', cart:'Your Shopping Cart', empty:'Your cart is empty.',
+      cartOfferHead:'🛍️ Add one more item — unlock a special offer!',
+      cartOfferTitle:'✨ Add another item to your cart',
+      cartOfferText:'Buy one more item and unlock a wonderful special offer.',
+      view:'View →', discountNote:'⚠️ Offer discount applies only to 1-Gram Gold & Combos.',
+      subtotal:'Subtotal:', discount:'Discount (1 Gram Gold/Combos):', total:'Total Payable:',
+      orderWhatsapp:'Order on WhatsApp', offerTitle:'Check Your Offer',
+      offerSubtitle:'Enter your mobile number to instantly see your special discount',
+      phonePlaceholder:'10-digit mobile number', check:'Check Offer',
+      phoneError:'⚠️ Please enter a valid 10-digit mobile number.',
+      specialOffer:'🎉 Special Offer for Your Number', discountWord:'Discount',
+      payable:'Payable', specialGift:'🎁 Special Gift',
+      offerRule:'💡 This discount applies only to 1 Gram Gold and Combos. Other categories are not eligible.',
+      whatsappContinue:'Continue to WhatsApp Chat', quickLinks:'Quick Links', contact:'Contact Us',
+      footerAbout:'A trusted destination for quality 1 Gram Gold jewellery, Maggam Works and premium beauty care products.',
+      matching:'Matching Bangles', address:'Chirala, Andhra Pradesh', rights:'All Rights Reserved',
+      noProducts:'No products in this category', product:'Product', price:'Price', mobile:'Mobile Number',
+      dateTime:'Date & Time', afterOffer:'Price after offer', information:'I would like more information / place an order for this product.',
+      cartOrder:'I would like to place an order from the Lucky Collections website:',
+      eligible:'Eligible 1 Gram Gold / Combos total:', onlyEligible:'Discount applies only to 1 Gram Gold / Combos',
+      cartEligible:'On eligible items in your cart', addToCart:'Add to Cart', callShort:'Call', chat:'Chat',
+      specialOfferShort:'🎉 SPECIAL OFFER 🎉'
+    },
+    hi:{
+      language:'भाषा', offerBar:'✨ विशेष ऑफर: चिराला और ऑनलाइन ग्राहकों के लिए मुफ्त डिलीवरी! ✨',
+      combo:'🔥 कॉम्बो ऑफर्स', gold:'1 ग्राम गोल्ड', haaram:'हारम', bangles:'चूड़ियाँ',
+      earrings:'ईयररिंग्स', maggam:'मग्गम वर्क्स', beauty:'ब्यूटी और परफ्यूम',
+      heroKicker:'लक्ज़री और रॉयल कलेक्शन',
+      heroTitle:'1 ग्राम गोल्ड, मोती-हीरे के हारम और मग्गम वर्क्स',
+      heroText:'आपके लुक को और भी चमकदार, रॉयल और खूबसूरत बनाने वाले प्रीमियम पारंपरिक डिज़ाइन और आभूषण।',
+      shop:'अभी खरीदें', rental:'शादी और विशेष अवसरों के लिए 1-ग्राम गोल्ड आभूषण किराये पर उपलब्ध हैं। संपर्क करें:',
+      quality:'गुणवत्ता और विश्वास', founder:'लकी कलेक्शंस प्रोपराइटर और मैनेजमेंट',
+      about:'लकी कलेक्शंस में हर आभूषण उच्च गुणवत्ता वाली गोल्ड प्लेटिंग और पारंपरिक डिज़ाइन के साथ तैयार किया जाता है। चिराला क्षेत्र में पसंद किया जाने वाला हमारा ब्रांड अब ऑनलाइन पूरे भारत में ग्राहकों को सेवा देता है।',
+      services:['1 ग्राम गोल्ड आभूषण','शादी के आभूषण किराये पर','डिज़ाइनर मग्गम वर्क ब्लाउज़','फैंसी और मैचिंग चूड़ियाँ','लक्ज़री परफ्यूम और ब्यूटी केयर','100% गारंटीड क्वालिटी'],
+      viewCollections:'कलेक्शन देखें', call:'कॉल करें',
+      giftBtn:'✨ हर ₹2000 की खरीद पर मुफ्त गिफ्ट! अपना गिफ्ट देखें ✨',
+      shopCategory:'श्रेणी के अनुसार खरीदें', cart:'आपकी शॉपिंग कार्ट', empty:'आपकी कार्ट खाली है।',
+      cartOfferHead:'🛍️ एक और आइटम लें — विशेष ऑफर पाएं!',
+      cartOfferTitle:'✨ अपनी कार्ट में एक और आइटम जोड़ें',
+      cartOfferText:'एक और आइटम खरीदें और शानदार विशेष ऑफर पाएं।',
+      view:'देखें →', discountNote:'⚠️ ऑफर डिस्काउंट केवल 1-ग्राम गोल्ड और कॉम्बोज पर लागू है।',
+      subtotal:'सबटोटल:', discount:'डिस्काउंट (1 ग्राम गोल्ड/कॉम्बोज):', total:'कुल भुगतान:',
+      orderWhatsapp:'व्हाट्सऐप पर ऑर्डर करें', offerTitle:'अपना ऑफर देखें',
+      offerSubtitle:'अपना मोबाइल नंबर दर्ज करें और तुरंत अपना विशेष डिस्काउंट देखें',
+      phonePlaceholder:'10 अंकों का मोबाइल नंबर', check:'ऑफर देखें',
+      phoneError:'⚠️ कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।',
+      specialOffer:'🎉 आपके नंबर के लिए विशेष ऑफर', discountWord:'डिस्काउंट',
+      payable:'भुगतान योग्य', specialGift:'🎁 विशेष गिफ्ट',
+      offerRule:'💡 यह डिस्काउंट केवल 1 ग्राम गोल्ड और कॉम्बोज पर लागू है। अन्य श्रेणियाँ पात्र नहीं हैं।',
+      whatsappContinue:'व्हाट्सऐप चैट जारी रखें', quickLinks:'त्वरित लिंक', contact:'संपर्क करें',
+      footerAbout:'गुणवत्तापूर्ण 1 ग्राम गोल्ड आभूषण, मग्गम वर्क्स और प्रीमियम ब्यूटी केयर उत्पादों के लिए भरोसेमंद मंच।',
+      matching:'मैचिंग चूड़ियाँ', address:'चिराला, आंध्र प्रदेश', rights:'All Rights Reserved',
+      noProducts:'इस श्रेणी में कोई प्रोडक्ट नहीं', product:'प्रोडक्ट', price:'कीमत', mobile:'मोबाइल नंबर',
+      dateTime:'तारीख और समय', afterOffer:'ऑफर के बाद कीमत', information:'मैं इस प्रोडक्ट की जानकारी / ऑर्डर चाहता हूँ।',
+      cartOrder:'मैं Lucky Collections वेबसाइट से ऑर्डर करना चाहता हूँ:',
+      eligible:'पात्र 1 ग्राम गोल्ड / कॉम्बोज कुल:', onlyEligible:'डिस्काउंट केवल 1 ग्राम गोल्ड / कॉम्बोज पर लागू है',
+      cartEligible:'आपकी कार्ट के पात्र आइटम पर', addToCart:'कार्ट में जोड़ें', callShort:'कॉल', chat:'चैट',
+      specialOfferShort:'🎉 विशेष ऑफर 🎉'
+    },
+    kn:{
+      language:'ಭಾಷೆ', offerBar:'✨ ವಿಶೇಷ ಆಫರ್: ಚೀರಾಲಾ ಮತ್ತು ಆನ್‌ಲೈನ್ ಗ್ರಾಹಕರಿಗೆ ಉಚಿತ ಡೆಲಿವರಿ! ✨',
+      combo:'🔥 ಕಾಂಬೋ ಆಫರ್‌ಗಳು', gold:'1 ಗ್ರಾಂ ಗೋಲ್ಡ್', haaram:'ಹಾರಗಳು', bangles:'ಬ್ಯಾಂಗಲ್ಸ್',
+      earrings:'ಇಯರ್ ರಿಂಗ್ಸ್', maggam:'ಮಗ್ಗಂ ವರ್ಕ್ಸ್', beauty:'ಬ್ಯೂಟಿ & ಪರ್ಫ್ಯೂಮ್ಸ್',
+      heroKicker:'ಲಕ್ಸುರಿ & ರಾಯಲ್ ಕಲೆಕ್ಷನ್', heroTitle:'1 ಗ್ರಾಂ ಗೋಲ್ಡ್, ಮುತ್ತು-ವಜ್ರದ ಹಾರಗಳು & ಮಗ್ಗಂ ವರ್ಕ್ಸ್',
+      heroText:'ನಿಮ್ಮ ಲುಕ್‌ಗೆ ಇನ್ನಷ್ಟು ಹೊಳಪು ಮತ್ತು ರಾಯಲ್ ಶೈಲಿ ನೀಡುವ ಪ್ರೀಮಿಯಂ ಸಾಂಪ್ರದಾಯಿಕ ವಿನ್ಯಾಸಗಳು ಮತ್ತು ಆಭರಣಗಳು.',
+      shop:'ಈಗ ಖರೀದಿಸಿ', rental:'ಮದುವೆ ಮತ್ತು ವಿಶೇಷ ಸಂದರ್ಭಗಳಿಗೆ 1-ಗ್ರಾಂ ಗೋಲ್ಡ್ ಆಭರಣಗಳು ಬಾಡಿಗೆಗೆ ಲಭ್ಯ. ಸಂಪರ್ಕಿಸಿ:',
+      quality:'ಗುಣಮಟ್ಟ & ವಿಶ್ವಾಸ', founder:'ಲಕ್ಕಿ ಕಲೆಕ್ಷನ್ಸ್ ಮಾಲೀಕರು & ನಿರ್ವಹಣೆ',
+      about:'ಲಕ್ಕಿ ಕಲೆಕ್ಷನ್ಸ್‌ನಲ್ಲಿ ಪ್ರತಿಯೊಂದು ಆಭರಣವೂ ಉತ್ತಮ ಗುಣಮಟ್ಟದ ಗೋಲ್ಡ್ ಪ್ಲೇಟಿಂಗ್ ಮತ್ತು ಸಾಂಪ್ರದಾಯಿಕ ವಿನ್ಯಾಸಗಳಿಂದ ತಯಾರಿಸಲಾಗಿದೆ. ಚೀರಾಲಾ ಪ್ರದೇಶದಲ್ಲಿ ಮೆಚ್ಚುಗೆ ಪಡೆದ ನಮ್ಮ ಬ್ರ್ಯಾಂಡ್ ಈಗ ಆನ್‌ಲೈನ್ ಮೂಲಕ ಭಾರತದೆಲ್ಲೆಡೆ ಸೇವೆ ನೀಡುತ್ತದೆ.',
+      services:['1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಆಭರಣಗಳು','ಮದುವೆ ಆಭರಣಗಳು ಬಾಡಿಗೆಗೆ','ಡಿಸೈನರ್ ಮಗ್ಗಂ ವರ್ಕ್ ಬ್ಲೌಸ್‌ಗಳು','ಫ್ಯಾನ್ಸಿ & ಮ್ಯಾಚಿಂಗ್ ಬ್ಯಾಂಗಲ್ಸ್','ಲಕ್ಸುರಿ ಪರ್ಫ್ಯೂಮ್ಸ್ & ಬ್ಯೂಟಿ ಕೇರ್','100% ಗ್ಯಾರಂಟಿ ಗುಣಮಟ್ಟ'],
+      viewCollections:'ಕಲೆಕ್ಷನ್ ನೋಡಿ', call:'ಕರೆ ಮಾಡಿ', giftBtn:'✨ ಪ್ರತಿ ₹2000 ಖರೀದಿಗೆ ಉಚಿತ ಗಿಫ್ಟ್! ನಿಮ್ಮ ಗಿಫ್ಟ್ ನೋಡಿ ✨',
+      shopCategory:'ಕ್ಯಾಟಗರಿ ಮೂಲಕ ಶಾಪ್ ಮಾಡಿ', cart:'ನಿಮ್ಮ ಶಾಪಿಂಗ್ ಕಾರ್ಟ್', empty:'ನಿಮ್ಮ ಕಾರ್ಟ್ ಖಾಲಿಯಾಗಿದೆ.',
+      cartOfferHead:'🛍️ ಇನ್ನೊಂದು ಐಟಂ ತೆಗೆದುಕೊಳ್ಳಿ — ವಿಶೇಷ ಆಫರ್ ಪಡೆಯಿರಿ!', cartOfferTitle:'✨ ನಿಮ್ಮ ಕಾರ್ಟ್‌ಗೆ ಇನ್ನೊಂದು ಐಟಂ ಸೇರಿಸಿ',
+      cartOfferText:'ಇನ್ನೊಂದು ಐಟಂ ಖರೀದಿಸಿ ಮತ್ತು ವಿಶೇಷ ಆಫರ್ ಪಡೆಯಿರಿ.', view:'ನೋಡಿ →',
+      discountNote:'⚠️ ಆಫರ್ ಡಿಸ್ಕೌಂಟ್ 1-ಗ್ರಾಂ ಗೋಲ್ಡ್ ಮತ್ತು ಕಾಂಬೋಗಳಿಗೆ ಮಾತ್ರ ಅನ್ವಯಿಸುತ್ತದೆ.',
+      subtotal:'ಸಬ್‌ಟೋಟಲ್:', discount:'ಡಿಸ್ಕೌಂಟ್ (1 ಗ್ರಾಂ ಗೋಲ್ಡ್/ಕಾಂಬೋ):', total:'ಒಟ್ಟು ಪಾವತಿ:',
+      orderWhatsapp:'ವಾಟ್ಸ್ಆಪ್‌ನಲ್ಲಿ ಆರ್ಡರ್ ಮಾಡಿ', offerTitle:'ನಿಮ್ಮ ಆಫರ್ ನೋಡಿ',
+      offerSubtitle:'ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ವಿಶೇಷ ಡಿಸ್ಕೌಂಟ್ ತಕ್ಷಣ ನೋಡಿ',
+      phonePlaceholder:'10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ', check:'ಆಫರ್ ಪರಿಶೀಲಿಸಿ',
+      phoneError:'⚠️ ದಯವಿಟ್ಟು ಸರಿಯಾದ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.',
+      specialOffer:'🎉 ನಿಮ್ಮ ಸಂಖ್ಯೆಗೆ ವಿಶೇಷ ಆಫರ್', discountWord:'ಡಿಸ್ಕೌಂಟ್', payable:'ಪಾವತಿಸಬೇಕಾದದ್ದು',
+      specialGift:'🎁 ವಿಶೇಷ ಗಿಫ್ಟ್', offerRule:'💡 ಈ ಡಿಸ್ಕೌಂಟ್ 1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಮತ್ತು ಕಾಂಬೋಗಳಿಗೆ ಮಾತ್ರ ಅನ್ವಯಿಸುತ್ತದೆ.',
+      whatsappContinue:'ವಾಟ್ಸ್ಆಪ್ ಚಾಟ್ ಮುಂದುವರಿಸಿ', quickLinks:'ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು', contact:'ಸಂಪರ್ಕಿಸಿ',
+      footerAbout:'ಗುಣಮಟ್ಟದ 1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಆಭರಣಗಳು, ಮಗ್ಗಂ ವರ್ಕ್ಸ್ ಮತ್ತು ಪ್ರೀಮಿಯಂ ಬ್ಯೂಟಿ ಕೇರ್ ಉತ್ಪನ್ನಗಳಿಗೆ ವಿಶ್ವಾಸಾರ್ಹ ವೇದಿಕೆ.',
+      matching:'ಮ್ಯಾಚಿಂಗ್ ಬ್ಯಾಂಗಲ್ಸ್', address:'ಚೀರಾಲಾ, ಆಂಧ್ರ ಪ್ರದೇಶ', rights:'All Rights Reserved',
+      noProducts:'ಈ ಕ್ಯಾಟಗರಿಯಲ್ಲಿ ಉತ್ಪನ್ನಗಳಿಲ್ಲ', product:'ಉತ್ಪನ್ನ', price:'ಬೆಲೆ', mobile:'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
+      dateTime:'ದಿನಾಂಕ & ಸಮಯ', afterOffer:'ಆಫರ್ ನಂತರದ ಬೆಲೆ', information:'ಈ ಉತ್ಪನ್ನದ ಬಗ್ಗೆ ಮಾಹಿತಿ / ಆರ್ಡರ್ ಬೇಕು.',
+      cartOrder:'ನಾನು Lucky Collections ವೆಬ್‌ಸೈಟ್‌ನಿಂದ ಆರ್ಡರ್ ಮಾಡಲು ಬಯಸುತ್ತೇನೆ:',
+      eligible:'ಅರ್ಹ 1 ಗ್ರಾಂ ಗೋಲ್ಡ್ / ಕಾಂಬೋ ಒಟ್ಟು:', onlyEligible:'ಡಿಸ್ಕೌಂಟ್ 1 ಗ್ರಾಂ ಗೋಲ್ಡ್ / ಕಾಂಬೋಗಳಿಗೆ ಮಾತ್ರ',
+      cartEligible:'ನಿಮ್ಮ ಕಾರ್ಟ್‌ನ ಅರ್ಹ ಐಟಂಗಳ ಮೇಲೆ', addToCart:'ಕಾರ್ಟ್‌ಗೆ ಸೇರಿಸಿ', callShort:'ಕರೆ', chat:'ಚಾಟ್',
+      specialOfferShort:'🎉 ವಿಶೇಷ ಆಫರ್ 🎉'
+    },
+    ml:{
+      language:'ഭാഷ', offerBar:'✨ പ്രത്യേക ഓഫർ: ചീരാലയിലെയും ഓൺലൈൻ ഉപഭോക്താക്കൾക്കും സൗജന്യ ഡെലിവറി! ✨',
+      combo:'🔥 കോംബോ ഓഫറുകൾ', gold:'1 ഗ്രാം ഗോൾഡ്', haaram:'ഹാരങ്ങൾ', bangles:'ബാംഗിൾസ്',
+      earrings:'ഇയർ റിംഗ്സ്', maggam:'മഗ്ഗം വർക്സ്', beauty:'ബ്യൂട്ടി & പെർഫ്യൂംസ്',
+      heroKicker:'ലക്സറി & റോയൽ കളക്ഷൻ', heroTitle:'1 ഗ്രാം ഗോൾഡ്, മുത്ത്-വജ്ര ഹാരങ്ങൾ & മഗ്ഗം വർക്സ്',
+      heroText:'നിങ്ങളുടെ ലുക്കിന് കൂടുതൽ തിളക്കവും രാജകീയ ഭംഗിയും നൽകുന്ന പ്രീമിയം പരമ്പരാഗത ഡിസൈനുകളും ആഭരണങ്ങളും.',
+      shop:'ഇപ്പോൾ വാങ്ങൂ', rental:'വിവാഹങ്ങൾക്കും പ്രത്യേക അവസരങ്ങൾക്കും 1-ഗ്രാം ഗോൾഡ് ആഭരണങ്ങൾ വാടകയ്ക്ക് ലഭ്യമാണ്. ബന്ധപ്പെടുക:',
+      quality:'ഗുണനിലവാരവും വിശ്വാസവും', founder:'ലക്കി കളക്ഷൻസ് ഉടമ & മാനേജ്മെന്റ്',
+      about:'ലക്കി കളക്ഷൻസിലെ ഓരോ ആഭരണവും മികച്ച ഗോൾഡ് പ്ലേറ്റിംഗും പരമ്പരാഗത ഡിസൈനുകളും ഉപയോഗിച്ച് നിർമ്മിക്കുന്നു. ചീരാല മേഖലയിൽ പ്രിയപ്പെട്ട ഞങ്ങളുടെ ബ്രാൻഡ് ഇപ്പോൾ ഓൺലൈനായി ഇന്ത്യയിലുടനീളം സേവനം നൽകുന്നു.',
+      services:['1 ഗ്രാം ഗോൾഡ് ആഭരണങ്ങൾ','വിവാഹ ആഭരണങ്ങൾ വാടകയ്ക്ക്','ഡിസൈനർ മഗ്ഗം വർക്ക് ബ്ലൗസുകൾ','ഫാൻസി & മാച്ചിംഗ് ബാംഗിൾസ്','ലക്സറി പെർഫ്യൂമ്സ് & ബ്യൂട്ടി കെയർ','100% ഗ്യാരണ്ടീഡ് ക്വാളിറ്റി'],
+      viewCollections:'കളക്ഷൻ കാണുക', call:'വിളിക്കൂ', giftBtn:'✨ ഓരോ ₹2000 വാങ്ങലിനും സൗജന്യ ഗിഫ്റ്റ്! നിങ്ങളുടെ ഗിഫ്റ്റ് കാണൂ ✨',
+      shopCategory:'കാറ്റഗറി അനുസരിച്ച് ഷോപ്പ് ചെയ്യൂ', cart:'നിങ്ങളുടെ ഷോപ്പിംഗ് കാർട്ട്', empty:'നിങ്ങളുടെ കാർട്ട് ശൂന്യമാണ്.',
+      cartOfferHead:'🛍️ മറ്റൊരു ഐറ്റം കൂടി എടുക്കൂ — പ്രത്യേക ഓഫർ നേടൂ!', cartOfferTitle:'✨ നിങ്ങളുടെ കാർട്ടിലേക്ക് മറ്റൊരു ഐറ്റം ചേർക്കൂ',
+      cartOfferText:'മറ്റൊരു ഐറ്റം വാങ്ങി മികച്ച പ്രത്യേക ഓഫർ നേടൂ.', view:'കാണൂ →',
+      discountNote:'⚠️ ഓഫർ ഡിസ്കൗണ്ട് 1-ഗ്രാം ഗോൾഡിനും കോംബോകൾക്കും മാത്രം ബാധകം.',
+      subtotal:'സബ്‌ടോട്ടൽ:', discount:'ഡിസ്കൗണ്ട് (1 ഗ്രാം ഗോൾഡ്/കോംബോ):', total:'ആകെ നൽകേണ്ടത്:',
+      orderWhatsapp:'വാട്ട്സ്ആപ്പിൽ ഓർഡർ ചെയ്യൂ', offerTitle:'നിങ്ങളുടെ ഓഫർ പരിശോധിക്കൂ',
+      offerSubtitle:'മൊബൈൽ നമ്പർ നൽകി നിങ്ങളുടെ പ്രത്യേക ഡിസ്കൗണ്ട് ഉടൻ കാണൂ',
+      phonePlaceholder:'10 അക്ക മൊബൈൽ നമ്പർ', check:'ഓഫർ പരിശോധിക്കൂ',
+      phoneError:'⚠️ ദയവായി ശരിയായ 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക.',
+      specialOffer:'🎉 നിങ്ങളുടെ നമ്പറിനുള്ള പ്രത്യേക ഓഫർ', discountWord:'ഡിസ്കൗണ്ട്', payable:'നൽകേണ്ടത്',
+      specialGift:'🎁 പ്രത്യേക ഗിഫ്റ്റ്', offerRule:'💡 ഈ ഡിസ്കൗണ്ട് 1 ഗ്രാം ഗോൾഡിനും കോംബോകൾക്കും മാത്രം ബാധകം.',
+      whatsappContinue:'വാട്ട്സ്ആപ്പ് ചാറ്റ് തുടരുക', quickLinks:'ക്വിക്ക് ലിങ്കുകൾ', contact:'ബന്ധപ്പെടുക',
+      footerAbout:'ഗുണമേന്മയുള്ള 1 ഗ്രാം ഗോൾഡ് ആഭരണങ്ങൾ, മഗ്ഗം വർക്സ്, പ്രീമിയം ബ്യൂട്ടി കെയർ ഉൽപ്പന്നങ്ങൾക്കുള്ള വിശ്വസനീയ വേദി.',
+      matching:'മാച്ചിംഗ് ബാംഗിൾസ്', address:'ചീരാല, ആന്ധ്ര പ്രദേശ്', rights:'All Rights Reserved',
+      noProducts:'ഈ കാറ്റഗറിയിൽ ഉൽപ്പന്നങ്ങളില്ല', product:'ഉൽപ്പന്നം', price:'വില', mobile:'മൊബൈൽ നമ്പർ',
+      dateTime:'തീയതിയും സമയവും', afterOffer:'ഓഫറിന് ശേഷമുള്ള വില', information:'ഈ ഉൽപ്പന്നത്തെക്കുറിച്ച് വിവരങ്ങൾ / ഓർഡർ വേണം.',
+      cartOrder:'Lucky Collections വെബ്സൈറ്റിൽ നിന്ന് ഓർഡർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നു:',
+      eligible:'അർഹമായ 1 ഗ്രാം ഗോൾഡ് / കോംബോ മൊത്തം:', onlyEligible:'ഡിസ്കൗണ്ട് 1 ഗ്രാം ഗോൾഡ് / കോംബോകൾക്ക് മാത്രം',
+      cartEligible:'നിങ്ങളുടെ കാർട്ടിലെ അർഹമായ ഐറ്റങ്ങളിന്', addToCart:'കാർട്ടിൽ ചേർക്കൂ', callShort:'വിളിക്കൂ', chat:'ചാറ്റ്',
+      specialOfferShort:'🎉 പ്രത്യേക ഓഫർ 🎉'
+    },
+    ta:{
+      language:'மொழி', offerBar:'✨ சிறப்பு சலுகை: சீராலா மற்றும் ஆன்லைன் வாடிக்கையாளர்களுக்கு இலவச டெலிவரி! ✨',
+      combo:'🔥 காம்போ ஆஃபர்கள்', gold:'1 கிராம் கோல்ட்', haaram:'ஹாரம்', bangles:'வளையல்கள்',
+      earrings:'காதணிகள்', maggam:'மக்ஹம் வொர்க்ஸ்', beauty:'பியூட்டி & பர்ஃப்யூம்ஸ்',
+      heroKicker:'லக்சுரி & ராயல் கலெக்ஷன்', heroTitle:'1 கிராம் கோல்ட், முத்து-வைர ஹாரம் & மக்ஹம் வொர்க்ஸ்',
+      heroText:'உங்கள் தோற்றத்தை மேலும் அழகாகவும் ராயலாகவும் மாற்றும் பிரீமியம் பாரம்பரிய டிசைன்கள் மற்றும் நகைகள்.',
+      shop:'இப்போது வாங்குங்கள்', rental:'திருமணம் மற்றும் சிறப்பு நிகழ்வுகளுக்கு 1-கிராம் கோல்ட் நகைகள் வாடகைக்கு கிடைக்கும். தொடர்புக்கு:',
+      quality:'தரம் & நம்பிக்கை', founder:'லக்கி கலெக்ஷன்ஸ் உரிமையாளர் & மேலாண்மை',
+      about:'லக்கி கலெக்ஷன்ஸில் ஒவ்வொரு நகையும் உயர்தர கோல்ட் பிளேட்டிங் மற்றும் பாரம்பரிய டிசைன்களுடன் தயாரிக்கப்படுகிறது. சீராலா பகுதியில் விரும்பப்படும் எங்கள் பிராண்ட் இப்போது ஆன்லைனில் இந்தியா முழுவதும் சேவை வழங்குகிறது.',
+      services:['1 கிராம் கோல்ட் நகைகள்','திருமண நகைகள் வாடகைக்கு','டிசைனர் மக்ஹம் வொர்க் பிளவுஸ்','ஃபேன்சி & மேட்சிங் வளையல்கள்','லக்சுரி பர்ஃப்யூம்ஸ் & பியூட்டி கேர்','100% உத்தரவாத தரம்'],
+      viewCollections:'கலெக்ஷன்களை பார்க்க', call:'அழைக்கவும்', giftBtn:'✨ ஒவ்வொரு ₹2000 வாங்குதலுக்கும் இலவச கிஃப்ட்! உங்கள் கிஃப்ட்டை பாருங்கள் ✨',
+      shopCategory:'வகை வாரியாக வாங்குங்கள்', cart:'உங்கள் ஷாப்பிங் கார்ட்', empty:'உங்கள் கார்ட் காலியாக உள்ளது.',
+      cartOfferHead:'🛍️ இன்னொரு பொருள் வாங்குங்கள் — சிறப்பு சலுகை பெறுங்கள்!', cartOfferTitle:'✨ உங்கள் கார்ட்டில் இன்னொரு பொருளை சேர்க்கவும்',
+      cartOfferText:'இன்னொரு பொருளை வாங்கி சிறப்பு சலுகையை பெறுங்கள்.', view:'பார்க்க →',
+      discountNote:'⚠️ சலுகை தள்ளுபடி 1-கிராம் கோல்ட் மற்றும் காம்போக்களுக்கு மட்டும்.',
+      subtotal:'சப்டோட்டல்:', discount:'தள்ளுபடி (1 கிராம் கோல்ட்/காம்போ):', total:'மொத்தம் செலுத்த வேண்டியது:',
+      orderWhatsapp:'வாட்ஸ்அப்பில் ஆர்டர் செய்யுங்கள்', offerTitle:'உங்கள் சலுகையை பார்க்கவும்',
+      offerSubtitle:'உங்கள் மொபைல் எண்ணை உள்ளிட்டு சிறப்பு தள்ளுபடியை உடனே பார்க்கவும்',
+      phonePlaceholder:'10 இலக்க மொபைல் எண்', check:'சலுகையை சரிபார்க்கவும்',
+      phoneError:'⚠️ சரியான 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.',
+      specialOffer:'🎉 உங்கள் எண்ணுக்கான சிறப்பு சலுகை', discountWord:'தள்ளுபடி', payable:'செலுத்த வேண்டியது',
+      specialGift:'🎁 சிறப்பு கிஃப்ட்', offerRule:'💡 இந்த தள்ளுபடி 1 கிராம் கோல்ட் மற்றும் காம்போக்களுக்கு மட்டும் பொருந்தும்.',
+      whatsappContinue:'வாட்ஸ்அப் உரையாடலை தொடரவும்', quickLinks:'விரைவு இணைப்புகள்', contact:'தொடர்பு கொள்ளுங்கள்',
+      footerAbout:'தரமான 1 கிராம் கோல்ட் நகைகள், மக்ஹம் வொர்க்ஸ் மற்றும் பிரீமியம் பியூட்டி கேர் பொருட்களுக்கான நம்பகமான தளம்.',
+      matching:'மேட்சிங் வளையல்கள்', address:'சீராலா, ஆந்திரப் பிரதேசம்', rights:'All Rights Reserved',
+      noProducts:'இந்த வகையில் பொருட்கள் இல்லை', product:'பொருள்', price:'விலை', mobile:'மொபைல் எண்',
+      dateTime:'தேதி & நேரம்', afterOffer:'சலுகைக்குப் பிந்தைய விலை', information:'இந்த பொருளைப் பற்றி தகவல் / ஆர்டர் வேண்டும்.',
+      cartOrder:'Lucky Collections இணையதளத்தில் இருந்து ஆர்டர் செய்ய விரும்புகிறேன்:',
+      eligible:'தகுதியான 1 கிராம் கோல்ட் / காம்போ மொத்தம்:', onlyEligible:'தள்ளுபடி 1 கிராம் கோல்ட் / காம்போக்களுக்கு மட்டும்',
+      cartEligible:'உங்கள் கார்ட்டில் தகுதியான பொருட்களுக்கு', addToCart:'கார்ட்டில் சேர்க்க', callShort:'அழைப்பு', chat:'சாட்',
+      specialOfferShort:'🎉 சிறப்பு சலுகை 🎉'
+    }
+  };
+
+  const CAT_KEY = {combos:'combo',gold:'gold',haaram:'haaram',bangles:'bangles',earrings:'earrings',maggam:'maggam',beauty:'beauty'};
+  const CATEGORY_BASE = {
+    combos:{te:'రాయల్ జ్యూవెల్లరీ కాంబో సెట్',en:'Royal Jewellery Combo Set',hi:'रॉयल ज्वेलरी कॉम्बो सेट',kn:'ರಾಯಲ್ ಜ್ಯುವೆಲ್ಲರಿ ಕಾಂಬೋ ಸೆಟ್',ml:'റോയൽ ജ്വല്ലറി കോംബോ സെറ്റ്',ta:'ராயல் ஜுவல்லரி காம்போ செட்'},
+    gold:{te:'1 Gram Gold గొలుసు',en:'1 Gram Gold Chain',hi:'1 ग्राम गोल्ड चेन',kn:'1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಚೈನ್',ml:'1 ഗ്രാം ഗോൾഡ് ചെയിൻ',ta:'1 கிராம் கோல்ட் செயின்'},
+    haaram:{te:'రాయల్ డిజైనర్ హారం',en:'Royal Designer Haaram',hi:'रॉयल डिज़ाइनर हारम',kn:'ರಾಯಲ್ ಡಿಸೈನರ್ ಹಾರ',ml:'റോയൽ ഡിസൈനർ ഹാരം',ta:'ராயல் டிசைனர் ஹாரம்'},
+    bangles:{te:'ఫ్యాన్సీ డిజైనర్ బ్యాంగిల్స్',en:'Fancy Designer Bangles',hi:'फैंसी डिज़ाइनर चूड़ियाँ',kn:'ಫ್ಯಾನ್ಸಿ ಡಿಸೈನರ್ ಬ್ಯಾಂಗಲ್ಸ್',ml:'ഫാൻസി ഡിസൈനർ ബാംഗിൾസ്',ta:'ஃபேன்சி டிசைனர் வளையல்கள்'},
+    earrings:{te:'1 Gram Gold ఇయర్ రింగ్స్',en:'1 Gram Gold Earrings',hi:'1 ग्राम गोल्ड ईयररिंग्स',kn:'1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಇಯರ್ ರಿಂಗ್ಸ್',ml:'1 ഗ്രാം ഗോൾഡ് ഇയർ റിംഗ്സ്',ta:'1 கிராம் கோல்ட் காதணிகள்'},
+    maggam:{te:'హెవీ మగ్గం వర్క్ బ్లౌజ్',en:'Heavy Maggam Work Blouse',hi:'हेवी मग्गम वर्क ब्लाउज़',kn:'ಹೆವಿ ಮಗ್ಗಂ ವರ್ಕ್ ಬ್ಲೌಸ್',ml:'ഹെവി മഗ്ഗം വർക്ക് ബ്ലൗസ്',ta:'ஹெவி மக்ஹம் வொர்க் பிளவுஸ்'},
+    beauty:{te:'బ్యూటీ & పెర్ఫ్యూమ్స్',en:'Beauty & Perfumes',hi:'ब्यूटी और परफ्यूम',kn:'ಬ್ಯೂಟಿ & ಪರ್ಫ್ಯೂಮ್ಸ್',ml:'ബ്യൂട്ടി & പെർഫ്യൂംസ്',ta:'பியூட்டி & பர்ஃப்யூம்ஸ்'}
+  };
+  const TAGS = {te:{BEST:'BEST',HOT:'HOT',COMBO:'COMBO OFFER'},en:{BEST:'BEST',HOT:'HOT',COMBO:'COMBO OFFER'},
+    hi:{BEST:'बेस्ट',HOT:'हॉट',COMBO:'कॉम्बो ऑफर'},kn:{BEST:'ಬೆಸ್ಟ್',HOT:'ಹಾಟ್',COMBO:'ಕಾಂಬೋ ಆಫರ್'},
+    ml:{BEST:'ബെസ്റ്റ്',HOT:'ഹോട്ട്',COMBO:'കോംബോ ഓഫർ'},ta:{BEST:'சிறந்தது',HOT:'ஹாட்',COMBO:'காம்போ ஆஃபர்'}};
+
+  function t(k){ return (UI[currentLang] && UI[currentLang][k]) || UI.en[k] || k; }
+  function catName(key){ return t(CAT_KEY[key] || key); }
+  function productName(prod){
+    const base = CATEGORY_BASE[prod.category];
+    return base ? `${base[currentLang] || base.en} #${((prod.id-1)%10)+1}` : prod.name;
+  }
+  function tagText(prod){ return (TAGS[currentLang]||TAGS.en)[prod.category==='combos'?'COMBO':(prod.id%2?'BEST':'HOT')]; }
+
+  function setText(el,key){ if(el) el.textContent=t(key); }
+  function setHtml(el,key){ if(el) el.innerHTML=t(key); }
+
+  function applyStatic(){
+    document.documentElement.lang = currentLang;
+    document.title = `Lucky Collections | ${currentLang==='te'?'రాయల్ ఎలిగెన్స్':currentLang==='en'?'Royal Elegance':currentLang==='hi'?'रॉयल एलिगेंस':currentLang==='kn'?'ರಾಯಲ್ ಎಲಿಗನ್ಸ್':currentLang==='ml'?'റോയൽ എലിഗൻസ്':'ராயல் எலிகன்ஸ்'}`;
+    setText(document.getElementById('languageLabel'),'language');
+
+    const top=document.querySelector('.top-bar'); if(top) top.textContent=t('offerBar');
+    const navBtns=document.querySelectorAll('nav .combo-btn,.nav-btn');
+    const keys=['combo','gold','haaram','bangles','earrings','maggam','beauty'];
+    navBtns.forEach((b,i)=>{ if(keys[i]) b.innerHTML = (i===0?'<i class="fa-solid fa-fire"></i> ':'')+t(keys[i]); });
+
+    setText(document.querySelector('.hero-content h4'),'heroKicker');
+    setText(document.querySelector('.hero-content h2'),'heroTitle');
+    setText(document.querySelector('.hero-content p'),'heroText');
+    const shopBtn=document.querySelector('.hero-content .btn-gold'); if(shopBtn) shopBtn.innerHTML=t('shop')+' <i class="fa-solid fa-arrow-right"></i>';
+
+    const rentalText=document.querySelector('.magic-rental-text');
+    if(rentalText){
+      const phoneLink=document.getElementById('rentalPhoneLink');
+      const waLink=document.getElementById('rentalWhatsAppLink');
+      rentalText.innerHTML='<i class="fa-solid fa-crown"></i> '+t('rental')+
+        ' <span class="rental-actions">'+(phoneLink?phoneLink.outerHTML:'')+' '+(waLink?waLink.outerHTML:'')+
+        '</span> <i class="fa-solid fa-gem"></i>';
+    }
+
+    setText(document.querySelector('.founder-info h3'),'quality');
+    setText(document.querySelector('.founder-info h2'),'founder');
+    setText(document.querySelector('.founder-info > p'),'about');
+    document.querySelectorAll('.services-grid-list div').forEach((el,i)=>{
+      if(UI[currentLang].services[i]) el.innerHTML='<i class="fa-solid fa-square-check"></i> '+UI[currentLang].services[i];
+    });
+    const founderBtns=document.querySelectorAll('.founder-info .btn-gold');
+    if(founderBtns[0]) setText(founderBtns[0],'viewCollections');
+    if(founderBtns[1]) founderBtns[1].innerHTML='<i class="fa-solid fa-phone"></i> '+t('call');
+    setText(document.getElementById('floatingCallText'),'call');
+    const offerBtn=document.querySelector('.magic-offer-btn span'); setText(offerBtn,'giftBtn');
+
+    setText(document.querySelector('.categories .section-title'),'shopCategory');
+    Object.keys(CAT_KEY).forEach(k=>{
+      const el=document.getElementById('cat-name-'+k);
+      if(el) el.textContent=(k==='combos'?'🔥 ':'')+catName(k);
+    });
+
+    setText(document.getElementById('cart-sidebar')?.querySelector('.cart-header h3'),'cart');
+    const topHead=document.querySelector('.cart-top-offer-head'); setText(topHead,'cartOfferHead');
+    setText(document.getElementById('cartTopOfferTitle'),'cartOfferTitle');
+    setText(document.getElementById('cartTopOfferText'),'cartOfferText');
+    const topBtn=document.querySelector('.cart-top-offer-btn'); setText(topBtn,'view');
+    setText(document.getElementById('cartDiscountNote'),'discountNote');
+
+    const footerCols=document.querySelectorAll('.footer-col');
+    if(footerCols[0]) setText(footerCols[0].querySelector('p'),'footerAbout');
+    if(footerCols[1]){
+      setText(footerCols[1].querySelector('h3'),'quickLinks');
+      const links=footerCols[1].querySelectorAll('li a');
+      const linkKeys=['combo','gold','haaram','matching','maggam'];
+      links.forEach((a,i)=>{ if(linkKeys[i]) setText(a,linkKeys[i]); });
+    }
+    if(footerCols[2]) setText(footerCols[2].querySelector('h3'),'contact');
+    setText(document.getElementById('footerAddress'),'address');
+    const copyright=document.querySelector('.copyright');
+    if(copyright) copyright.innerHTML=`&copy; 2026 Lucky Collections. ${t('rights')}.`;
+
+    const offer=document.getElementById('offerModal');
+    if(offer){
+      setText(offer.querySelector('.offer-page-title'),'offerTitle');
+      setText(offer.querySelector('.offer-page-subtitle'),'offerSubtitle');
+      const input=document.getElementById('modalUserPhone'); if(input) input.placeholder=t('phonePlaceholder');
+      setText(document.querySelector('.offer-check-btn'),'check');
+      setText(document.getElementById('modalPhoneError'),'phoneError');
+      const special=offer.querySelector('#modalOfferResult > div:first-child'); setText(special,'specialOffer');
+      const note=offer.querySelector('.offer-result-note'); setText(note,'offerRule');
+      const wa=offer.querySelector('#modalWhatsAppBtn'); if(wa) wa.innerHTML='<i class="fa-brands fa-whatsapp"></i> '+t('whatsappContinue');
+    }
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));
+    applyFont();
+  }
+
+  function applyFont(){
+    const family = currentLang==='te' ? "'Noto Sans Telugu', Poppins, sans-serif" :
+      currentLang==='hi' ? "'Noto Sans Devanagari', Poppins, sans-serif" :
+      currentLang==='kn' ? "'Noto Sans Kannada', Poppins, sans-serif" :
+      currentLang==='ml' ? "'Noto Sans Malayalam', Poppins, sans-serif" :
+      currentLang==='ta' ? "'Noto Sans Tamil', Poppins, sans-serif" :
+      "Poppins, sans-serif";
+    document.body.style.fontFamily=family;
+  }
+
+  // Replace the original renderer with a translated, polished renderer.
+  window.renderProducts = function(items){
+    const container=document.getElementById('product-list');
+    if(!container) return;
+    if(!items.length){ container.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:50px;color:#777">${t('noProducts')}</div>`; return; }
+    const callNo=toInternationalPhone(STORE_DATA.phone);
+    container.innerHTML=items.map(prod=>{
+      const name=escapeHtmlAttr(productName(prod));
+      return `<div class="product-card">
+        <div class="product-img" onclick="openImageModal('${escapeJsString(prod.img)}','${escapeJsString(productName(prod))}','${escapeJsString(prod.defaultImg)}')">
+          <span class="tag" style="${prod.category==='combos'?'background:#a9143c;':''}">${tagText(prod)}</span>
+          <img src="${prod.img}" alt="${name}" onerror="this.onerror=null;this.src='${prod.defaultImg}';">
+        </div>
+        <div class="product-info">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+          <h3>${name}</h3>
+          <div class="price"><span class="old-price">₹${prod.oldPrice}</span><span class="new-price">₹${prod.newPrice}</span></div>
+          <div class="btn-group">
+            <button class="add-cart-icon-btn" onclick="addToCart(${prod.id})" title="${t('addToCart')}"><i class="fa-solid fa-cart-plus"></i></button>
+            <a href="tel:${callNo}" class="call-now-btn"><i class="fa-solid fa-phone"></i> ${t('callShort')}</a>
+            <button class="add-to-cart-btn" onclick="startDirectChat(${prod.id})"><i class="fa-brands fa-whatsapp"></i> ${t('chat')}</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  };
+
+  // Keep category title and product names in the selected language.
+  const originalFilterProducts=window.filterProducts;
+  window.filterProducts=function(cat,element=null){
+    const filtered=products.filter(p=>p.category===cat);
+    renderProducts(filtered);
+    document.querySelectorAll('.cat-card').forEach(el=>el.classList.remove('active-cat'));
+    const target=element||document.getElementById('cat-'+cat); if(target) target.classList.add('active-cat');
+    const title=document.getElementById('product-title');
+    if(title) title.innerText=catName(cat);
+  };
+
+  // Translated cart renderer.
+  window.updateCartUI=function(){
+    document.getElementById('cart-count').innerText=cart.length;
+    const container=document.getElementById('cart-items-container');
+    const subtotalEl=document.getElementById('cart-subtotal-price');
+    const discountEl=document.getElementById('cart-discount-price');
+    const totalEl=document.getElementById('cart-total-price');
+    const cartNote=document.getElementById('cartDiscountNote');
+    const topOffer=document.getElementById('cartTopOffer');
+    if(cart.length===0){
+      container.innerHTML=`<p style="text-align:center;color:#777;margin-top:30px">${t('empty')}</p>`;
+      subtotalEl.innerText='₹0'; discountEl.innerText='-₹0'; totalEl.innerText='₹0';
+      cartNote.style.display='none'; if(topOffer) topOffer.classList.remove('show'); return;
+    }
+    let subtotal=0, discountableSubtotal=0;
+    container.innerHTML=cart.map((item,index)=>{
+      subtotal+=Number(item.newPrice||0);
+      if(['gold','combos'].includes(item.category)) discountableSubtotal+=Number(item.newPrice||0);
+      return `<div style="display:flex;gap:10px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:10px;align-items:center">
+        <img src="${item.img}" style="width:52px;height:52px;object-fit:contain;border-radius:10px;background:#fff;cursor:pointer" onclick="openImageModal('${escapeJsString(item.img)}','${escapeJsString(productName(item))}','${escapeJsString(item.defaultImg)}')" onerror="this.src='${item.defaultImg}'">
+        <div style="flex:1"><h4 style="font-size:12px;font-weight:700">${escapeHtmlAttr(productName(item))}</h4><p style="font-size:12px;color:var(--burgundy);font-weight:800;margin-top:3px">₹${item.newPrice}</p></div>
+        <i class="fa-solid fa-trash" style="color:#b42318;cursor:pointer;font-size:14px" onclick="removeFromCart(${index})"></i>
+      </div>`;
+    }).join('');
+    if(topOffer){
+      topOffer.classList.add('show');
+      const img=document.getElementById('cartTopOfferImg'); if(img) img.src=CART_EXTRA_OFFER.image;
+      setText(document.getElementById('cartTopOfferTitle'),'cartOfferTitle');
+      setText(document.getElementById('cartTopOfferText'),'cartOfferText');
+    }
+    cartNote.style.display=activeDiscountPercent>0 && discountableSubtotal>0?'block':'none';
+    const discountAmount=Math.round(discountableSubtotal*activeDiscountPercent/100);
+    subtotalEl.innerText=`₹${subtotal}`;
+    discountEl.innerText=`-₹${discountAmount} (${activeDiscountPercent}%)`;
+    totalEl.innerText=`₹${subtotal-discountAmount}`;
+  };
+
+  // Translate offer result after the original offer calculation.
+  const originalCheck=window.checkModalOffer;
+  window.checkModalOffer=function(){
+    originalCheck();
+    const result=document.getElementById('modalOfferResult');
+    if(!result) return;
+    const offerBaseText=document.getElementById('modalCartBaseText');
+    if(offerBaseText && !pendingChat) offerBaseText.innerText=cart.length?t('eligible')+' ₹'+getCartTotals().discountableSubtotal.toLocaleString('en-IN'):t('onlyEligible');
+    const disc=document.getElementById('modalDiscountAmount');
+    const fin=document.getElementById('modalFinalAmount');
+    const gift=document.getElementById('modalGiftName');
+    if(disc && activeDiscountPercent>=0){
+      const totals=pendingChat&&pendingChat.type==='product'
+        ? (products.find(p=>p.id===pendingChat.productId) ? (()=>{const p=products.find(p=>p.id===pendingChat.productId);const a=['gold','combos'].includes(p.category)?Math.round(p.newPrice*activeDiscountPercent/100):0;return {a,final:p.newPrice-a};})() : {a:0,final:0})
+        : {a:getCartTotals().discountAmount,final:getCartTotals().total};
+      disc.innerText=`₹${totals.a.toLocaleString('en-IN')} ${t('discountWord')}`;
+      fin.innerText=`${t('payable')} ₹${totals.final.toLocaleString('en-IN')}`;
+    }
+    if(gift) gift.innerText=`${t('specialGift')} ${activeGiftName}`;
+  };
+
+  // Translated WhatsApp message text.
+  window.continueOfferWhatsApp=function(){
+    if(!activeUserPhone || !pendingChat) return;
+    const chat=pendingChat, dateTime=getIndiaDateTime(), offer=`${activeDiscountPercent}% OFF`;
+    if(chat.type==='product'){
+      const product=products.find(p=>p.id===chat.productId); if(!product) return;
+      const eligible=DISCOUNT_CATEGORIES.includes(product.category);
+      const discountAmount=eligible?Math.round(product.newPrice*activeDiscountPercent/100):0;
+      const finalPrice=product.newPrice-discountAmount;
+      const message=`${t('information')}%0A%0A*${encodeURIComponent(t('product'))}:* ${encodeURIComponent(productName(product))}%0A*${encodeURIComponent(t('price'))}:* ₹${product.newPrice}%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(dateTime)}%0A*Offer:* ${eligible?offer:t('onlyEligible')}%0A*${encodeURIComponent(t('discountWord'))}:* ₹${discountAmount}%0A*${encodeURIComponent(t('afterOffer'))}:* ₹${finalPrice}`;
+      window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`,'_blank');
+    }else if(chat.type==='cart'){ checkoutCart(true); }
+  };
+
+  // Translated cart checkout.
+  window.checkoutCart=function(fromOfferButton=false){
+    if(cart.length===0){alert(t('empty'));return;}
+    if(!activeUserPhone && !fromOfferButton){openOfferModal({type:'cart'});return;}
+    if(!activeUserPhone)return;
+    const totals=getCartTotals();
+    const itemsList=cart.map(item=>`- ${encodeURIComponent(productName(item))} (₹${item.newPrice})`).join('%0A');
+    const couponText=activeDiscountPercent>0?`%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(getIndiaDateTime())}%0A*Offer:* ${activeDiscountPercent}% OFF%0A*${encodeURIComponent(t('eligible'))}:* ₹${totals.discountableSubtotal}%0A*${encodeURIComponent(t('discountWord'))}:* -₹${totals.discountAmount}%0A*${encodeURIComponent(t('specialGift'))}:* ${encodeURIComponent(activeGiftName)}`:'';
+    const message=`${t('cartOrder')}%0A%0A${itemsList}%0A%0A*${encodeURIComponent(t('subtotal'))}* ₹${totals.subtotal}${couponText}%0A*${encodeURIComponent(t('total'))}* ₹${totals.total}`;
+    window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`,'_blank');
+    document.getElementById('offerModal').classList.remove('show'); pendingChat=null;
+  };
+
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      currentLang=btn.dataset.lang;
+      localStorage.setItem(LANG_KEY,currentLang);
+      applyStatic();
+      const active=document.querySelector('.cat-card.active-cat')?.id?.replace('cat-','') || 'combos';
+      filterProducts(active);
+      updateCartUI();
+    });
+  });
+
+  // Override celebration text so it also follows the chosen language.
+  const oldLaunch=window.launchFrontCelebration;
+  window.launchFrontCelebration=function(){
+    oldLaunch();
+    const text=document.querySelector('.front-celebration-text');
+    if(text) text.textContent=t('specialOfferShort');
+  };
+
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{
+      applyStatic();
+      filterProducts('combos',document.getElementById('cat-combos'));
+      updateCartUI();
+    },30);
+  });
+})();
+</script>
+
 </body>
 </html>
