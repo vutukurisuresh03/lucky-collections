@@ -1553,6 +1553,71 @@ header nav ul li { flex: 0 0 auto !important; }
 }
 </style>
 
+
+<style id="header-no-cut-v5">
+/* ===== V5: NO-CUT HEADER / HORIZONTAL CATEGORY NAV ===== */
+html,body{max-width:100%;overflow-x:hidden!important}
+header{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:"logo icons" "nav nav"!important;
+  align-items:center!important;
+  column-gap:18px!important;
+  row-gap:14px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:16px 4%!important;
+}
+header .logo{grid-area:logo!important;min-width:0!important;max-width:100%!important;overflow:hidden!important}
+header .logo h1{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+header nav{
+  grid-area:nav!important;
+  width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+header nav ul{
+  display:flex!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  padding:5px 4px 10px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  scrollbar-width:thin!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+}
+header nav ul::-webkit-scrollbar{height:6px}
+header nav ul li{flex:0 0 auto!important}
+.nav-btn,.combo-btn{
+  font-size:18px!important;
+  min-height:58px!important;
+  padding:13px 22px!important;
+  flex:0 0 auto!important;
+}
+header .header-icons{grid-area:icons!important;flex:0 0 auto!important}
+.cart-icon{width:52px!important;height:52px!important}
+/* Keep the first button fully visible even after horizontal scrolling */
+header nav ul li:first-child{margin-left:2px!important}
+@media(max-width:900px){
+  header{padding:14px 3%!important;row-gap:11px!important}
+  .logo h1{font-size:30px!important}
+  .nav-btn,.combo-btn{font-size:17px!important;min-height:54px!important;padding:12px 18px!important}
+}
+@media(max-width:560px){
+  header{grid-template-columns:minmax(0,1fr) auto!important}
+  .logo h1{font-size:25px!important}
+  .logo span{font-size:10px!important;letter-spacing:2px!important}
+  .nav-btn,.combo-btn{font-size:16px!important;min-height:50px!important;padding:11px 16px!important}
+  header nav ul{gap:9px!important;padding-bottom:8px!important}
+}
+</style>
+
 </head>
 <body>
 
