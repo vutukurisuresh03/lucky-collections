@@ -1783,6 +1783,10 @@ header nav ul li:first-child{margin-left:2px!important}
             <h3>మీ షాపింగ్ కార్ట్</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
         </div>
+        <div class="cart-quick-actions" aria-label="కార్ట్ త్వరిత ఎంపికలు">
+            <button type="button" class="cart-continue-shopping-btn" onclick="toggleCart()">🛍️ షాపింగ్ కొనసాగించండి</button>
+            <button type="button" class="cart-quick-whatsapp-btn" onclick="openOfferModal({type:'cart'})"><i class="fa-brands fa-whatsapp"></i> WhatsApp ఆర్డర్</button>
+        </div>
         <!-- This banner is visible to the customer at the TOP of the cart after any item is added. -->
         <div class="cart-top-offer" id="cartTopOffer">
             <div class="cart-top-offer-head" id="cartGiftRewardHead">🎁 కొనుగోలు గిఫ్ట్ రివార్డ్స్</div>
@@ -1809,9 +1813,7 @@ header nav ul li:first-child{margin-left:2px!important}
                 <span>మొత్తం చెల్లించాల్సింది:</span>
                 <span id="cart-total-price" style="color:var(--burgundy);">₹0</span>
             </div>
-            <div class="cart-order-any-total-note">✓ ₹100 / ₹300 / ₹800 / ₹1,500 — ఎంత బిల్ ఉన్నా ఆర్డర్ చేయవచ్చు. గిఫ్ట్ కోసం ₹1,000 / ₹2,000 / ₹3,000 చేరడం తప్పనిసరి కాదు.</div>
             <button onclick="openOfferModal({type:'cart'})" class="cart-whatsapp-order-btn"><i class="fa-brands fa-whatsapp"></i> ఇప్పుడే WhatsApp ఆర్డర్ <span id="cartOrderButtonAmount">₹0</span></button>
-            <button onclick="openOfferModal({type:'cart',skipGift:true})" class="cart-skip-gift-btn">➜ గిఫ్ట్ కోసం వేచి ఉండకుండా ఇప్పుడే ఆర్డర్ చేయండి</button>
         </div>
     </div>
 
@@ -1822,7 +1824,6 @@ header nav ul li:first-child{margin-left:2px!important}
             <button class="offer-close-btn" onclick="closeOfferModal()" aria-label="Close">&times;</button>
             <div style="text-align:center;font-size:34px">🎁📱</div>
             <h2 class="offer-page-title">వాట్సాప్ ఆర్డర్</h2>
-            <div class="offer-page-subtitle">మీ మొబైల్ నంబర్ ఇవ్వండి. మీ ఆర్డర్ వివరాలు WhatsAppలో పంపబడతాయి. <b>₹1,000 / ₹2,000 / ₹3,000 బిల్ తప్పనిసరి కాదు.</b> గిఫ్ట్ వద్దనుకున్నా మీ ప్రస్తుత బిల్‌తోనే ఆర్డర్ చేయవచ్చు.</div>
             <div class="offer-phone-row">
                 <input type="tel" id="modalUserPhone" placeholder="10 అంకెల మొబైల్ నంబర్" maxlength="10" inputmode="numeric" autocomplete="tel">
                 <button class="offer-check-btn" onclick="checkModalOffer()">కొనసాగించండి</button>
@@ -2219,24 +2220,51 @@ header nav ul li:first-child{margin-left:2px!important}
         }
         function filterProducts(cat,element=null){const items=products.filter(p=>p.category===cat);renderProducts(items);document.querySelectorAll('.cat-card').forEach(x=>x.classList.remove('active-cat'));const t=element||document.getElementById('cat-'+cat);if(t)t.classList.add('active-cat');const title=document.getElementById('product-title');if(title)title.innerText=STORE_DATA.categories[cat]?.name||'కలెక్షన్స్';}
         function filterAndScroll(cat){filterProducts(cat);const target=document.getElementById('products');if(target){const y=target.getBoundingClientRect().top+scrollY-(document.querySelector('header')?.getBoundingClientRect().height||70)-18;scrollTo({top:Math.max(0,y),behavior:'smooth'});}}
-        function addToCart(id){const p=products.find(x=>x.id===id);if(!p)return;const before=cart.reduce((s,x)=>s+Number(x.newPrice||0),0);cart.push(p);updateCartUI(true,before);toggleCart(true);}
+        let lastCartCategory='combos';
+function addToCart(id){const p=products.find(x=>x.id===id);if(!p)return;const before=cart.reduce((s,x)=>s+Number(x.newPrice||0),0);cart.push(p);lastCartCategory=p.category||lastCartCategory;updateCartUI(true,before);toggleCart(true);}
         function removeFromCart(i){cart.splice(i,1);updateCartUI(false,0);}
         function toggleCart(forceOpen=false){const s=document.getElementById('cart-sidebar');if(forceOpen)s.classList.add('open');else s.classList.toggle('open');}
         function getCartTotals(){const subtotal=cart.reduce((s,x)=>s+Number(x.newPrice||0),0);return {subtotal,total:subtotal};}
         function renderCartGiftRewards(subtotal,animate=true){
-            const top=document.getElementById('cartTopOffer'), box=document.getElementById('cartGiftRewards');if(!top||!box)return;
-            if(subtotal<=0){top.classList.remove('show');box.innerHTML='';lastGiftTier=0;return;}
-            const current=getGiftTier(subtotal), next=GIFT_TIERS.find(r=>subtotal<r.amount);let html='';
-            if(current>0){const r=GIFT_TIERS[current-1],g=giftList[r.giftIndex];html+=`<div class="cart-gift-success">🎉 ₹${r.amount.toLocaleString('en-IN')} గిఫ్ట్ మీరు గెలుచుకున్నారు!<br><b>🎁 ${escapeHtmlAttr(g)}</b></div>`;}
-            if(next){const rem=next.amount-subtotal;const candidate=products.filter(p=>Number(p.newPrice)>0&&Number(p.newPrice)<=rem).sort((a,b)=>Number(b.newPrice)-Number(a.newPrice))[0];html+=`<div class="cart-gift-next-head">🎯 మీరు ₹${next.amount.toLocaleString('en-IN')} గిఫ్ట్‌కు దగ్గరగా ఉన్నారు!</div><div class="cart-gift-next-text">ఇంకొక <b>₹${rem.toLocaleString('en-IN')}</b> విలువ కొనుగోలు చేస్తే ₹${next.amount.toLocaleString('en-IN')} కొనుగోలుపై ప్రత్యేకమైన బహుమతి పొందండి 🎁</div>`;if(candidate)html+=`<div class="cart-add-suggestion"><img src="${candidate.img}" onerror="this.onerror=null;this.src='${candidate.defaultImg}';"><div class="cart-add-suggestion-copy"><div class="cart-add-suggestion-label">✨ ఇది యాడ్ చేసుకోండి</div><div class="cart-add-suggestion-name">${escapeHtmlAttr(productName(candidate))}</div><div class="cart-add-suggestion-price">₹${Number(candidate.newPrice).toLocaleString('en-IN')}</div></div><button onclick="addToCart(${candidate.id})">+ యాడ్</button></div>`;}
-            else {html+=`<div class="cart-gift-success final">🏆 మీరు ₹3,000+ గిఫ్ట్ రివార్డ్ సాధించారు!<br><b>🎁 ${escapeHtmlAttr(giftList[2])}</b></div>`;}
-            box.innerHTML=html;top.classList.add('show');
-            if(animate&&current>lastGiftTier){for(let t=lastGiftTier+1;t<=current;t++){const r=GIFT_TIERS[t-1];setTimeout(()=>launchGiftRewardCelebration(giftList[r.giftIndex],r.amount),(t-lastGiftTier-1)*2100);}activeGiftName=giftList[GIFT_TIERS[current-1].giftIndex]||'';}lastGiftTier=current;
-        }
-        function updateCartUI(animate=true,beforeSubtotal=0){
-            document.getElementById('cart-count').innerText=cart.length;const c=document.getElementById('cart-items-container'),sub=document.getElementById('cart-subtotal-price'),disc=document.getElementById('cart-discount-price'),tot=document.getElementById('cart-total-price');
-            if(!cart.length){c.innerHTML='<p style="text-align:center;color:#777;margin-top:30px">కార్ట్ ఖాళీగా ఉంది.</p>';sub.innerText='₹0';disc.innerText='గిఫ్ట్ రివార్డ్';tot.innerText='₹0';renderCartGiftRewards(0,false);return;}
-            let subtotal=0;c.innerHTML=cart.map((x,i)=>{subtotal+=Number(x.newPrice||0);return `<div style="display:flex;gap:10px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:10px;align-items:center"><img src="${x.img}" style="width:52px;height:52px;object-fit:contain;border-radius:10px;background:#fff" onerror="this.src='${x.defaultImg}'"><div style="flex:1"><h4 style="font-size:12px;font-weight:700">${escapeHtmlAttr(productName(x))}</h4><p style="font-size:12px;color:var(--burgundy);font-weight:800;margin-top:3px">₹${x.newPrice}</p></div><i class="fa-solid fa-trash" style="color:#b42318;cursor:pointer" onclick="removeFromCart(${i})"></i></div>`}).join('');sub.innerText=`₹${subtotal.toLocaleString('en-IN')}`;disc.innerText=getGiftTier(subtotal)>0?'🎁 గిఫ్ట్ గెలుచుకున్నారు':'గిఫ్ట్ రివార్డ్';tot.innerText=`₹${subtotal.toLocaleString('en-IN')}`;renderCartGiftRewards(subtotal,animate);}
+    const top=document.getElementById('cartTopOffer'), box=document.getElementById('cartGiftRewards');
+    if(!top||!box)return;
+    if(subtotal<=0){top.classList.remove('show');box.innerHTML='';lastGiftTier=0;return;}
+    const current=getGiftTier(subtotal), next=GIFT_TIERS.find(r=>subtotal<r.amount);
+    let html='';
+    const roadmap=GIFT_TIERS.map((r,i)=>{
+        const reached=subtotal>=r.amount, currentStep=next?next.amount===r.amount:false;
+        const gift=giftList[r.giftIndex]||'ప్రత్యేక గిఫ్ట్';
+        return `<div class="gift-roadmap-step ${reached?'reached':''} ${currentStep?'current':''}"><span>${reached?'✓':'🎁'}</span><b>₹${r.amount.toLocaleString('en-IN')}</b><small>${reached?'గిఫ్ట్ అన్‌లాక్':'గిఫ్ట్ టార్గెట్'}</small></div>${i<2?`<div class="gift-roadmap-line ${subtotal>=GIFT_TIERS[i].amount?'filled':''}"></div>`:''}`;
+    }).join('');
+    html+=`<div class="gift-roadmap" aria-label="గిఫ్ట్ టార్గెట్లు">${roadmap}</div>`;
+    if(current>0){const r=GIFT_TIERS[current-1],g=giftList[r.giftIndex];html+=`<div class="gift-current-reveal">🎉 <span>మీ గిఫ్ట్ అన్‌లాక్ అయింది</span><b>🎁 ${escapeHtmlAttr(g)}</b></div>`;}
+    if(next){
+        const rem=next.amount-subtotal;
+        const pool=products.filter(p=>Number(p.newPrice||0)>0 && Number(p.newPrice||0)<=Math.max(rem,100));
+        const preferred=pool.filter(p=>p.category===lastCartCategory);
+        const source=preferred.length?preferred:pool;
+        const suggestions=source.sort((a,b)=>Math.abs(rem-Number(a.newPrice||0))-Math.abs(rem-Number(b.newPrice||0))).slice(0,4);
+        html+=`<div class="gift-progress-card"><div class="gift-progress-head"><span>🎯 ₹${next.amount.toLocaleString('en-IN')} గిఫ్ట్ కోసం</span><b>ఇంకా ₹${rem.toLocaleString('en-IN')}</b></div><div class="gift-progress-track"><span style="width:${Math.min(100,Math.round(subtotal/next.amount*100))}%"></span></div><div class="gift-progress-message">ఇది compulsory కాదు — కావాలంటే మీకు ఉపయోగపడే ఐటమ్‌ను యాడ్ చేసుకుని గిఫ్ట్ టార్గెట్‌కి చేరండి.</div>`;
+        if(suggestions.length){
+            html+=`<div class="gift-suggestions-title">✨ మీకు ఉపయోగపడే సూచనలు</div><div class="gift-suggestions-grid">${suggestions.map(p=>`<div class="gift-suggestion-card"><img src="${p.img}" alt="${escapeHtmlAttr(productName(p))}" onerror="this.onerror=null;this.src='${p.defaultImg}';"><div class="gift-suggestion-info"><small>${escapeHtmlAttr(STORE_DATA.categories[p.category]?.name||'సూచన')}</small><strong>${escapeHtmlAttr(productName(p))}</strong><b>₹${Number(p.newPrice).toLocaleString('en-IN')}</b></div><button type="button" onclick="addToCart(${p.id})">+ యాడ్</button></div>`).join('')}</div>`;
+        }else html+=`<div class="gift-no-item">₹100 లోపు ఐటమ్ లేకపోతే ఏదైనా ఉపయోగకరమైన ఐటమ్‌ను ఎంచుకుని యాడ్ చేసుకోవచ్చు.</div>`;
+        html+='</div>';
+    } else {
+        html+=`<div class="gift-complete"><div class="gift-progress-message">🏆 ₹3,000+ గిఫ్ట్ రివార్డ్ అన్‌లాక్ అయింది. ఇక ఎక్కువ బిల్ చేయాల్సిన అవసరం లేదు.</div></div>`;
+    }
+    box.innerHTML=html;top.classList.add('show');
+    if(animate&&current>lastGiftTier){const r=GIFT_TIERS[current-1];activeGiftName=giftList[r.giftIndex]||'';launchGiftRewardCelebration(activeGiftName,r.amount);}
+    lastGiftTier=current;
+}
+function updateCartUI(animate=true,beforeSubtotal=0){
+    document.getElementById('cart-count').innerText=cart.length;
+    const c=document.getElementById('cart-items-container'),sub=document.getElementById('cart-subtotal-price'),disc=document.getElementById('cart-discount-price'),tot=document.getElementById('cart-total-price'),amt=document.getElementById('cartOrderButtonAmount');
+    if(!cart.length){c.innerHTML='<div class="cart-empty-state"><div>🛒</div><h4>మీ కార్ట్ ఖాళీగా ఉంది</h4><p>మీకు నచ్చిన ఐటమ్‌ను యాడ్ చేసి ఇక్కడ మీ ఆర్డర్‌ను చూడండి.</p></div>';sub.innerText='₹0';disc.innerText='గిఫ్ట్ రివార్డ్';tot.innerText='₹0';if(amt)amt.innerText='₹0';renderCartGiftRewards(0,false);updateCartScrollButton();return;}
+    const grouped=[];cart.forEach((x)=>{let g=grouped.find(z=>z.product.id===x.id);if(g)g.qty++;else grouped.push({product:x,qty:1});});
+    let subtotal=0;c.innerHTML=grouped.map((g)=>{const x=g.product;subtotal+=Number(x.newPrice||0)*g.qty;const first=cart.findIndex(z=>z.id===x.id);return `<div class="gift-cart-item"><img src="${x.img}" alt="${escapeHtmlAttr(productName(x))}" onerror="this.onerror=null;this.src='${x.defaultImg}';"><div class="gift-cart-item-copy"><h4>${escapeHtmlAttr(productName(x))}</h4><b>₹${Number(x.newPrice).toLocaleString('en-IN')}</b><div class="gift-cart-qty"><button type="button" onclick="removeFromCart(${first})">−</button><span>${g.qty}</span><button type="button" onclick="addToCart(${x.id})">+</button></div></div><button type="button" class="gift-cart-remove" onclick="removeAllFromCart(${x.id})" aria-label="తొలగించు">×</button></div>`;}).join('');
+    sub.innerText=`₹${subtotal.toLocaleString('en-IN')}`;disc.innerText=getGiftTier(subtotal)>0?'🎁 గిఫ్ట్ గెలుచుకున్నారు':'గిఫ్ట్ రివార్డ్';tot.innerText=`₹${subtotal.toLocaleString('en-IN')}`;if(amt)amt.innerText=`₹${subtotal.toLocaleString('en-IN')}`;renderCartGiftRewards(subtotal,animate);updateCartScrollButton();
+}
+function removeAllFromCart(id){cart=cart.filter(x=>x.id!==id);updateCartUI(false,0);}
         function openOfferModal(data=null){pendingChat=data;const m=document.getElementById('offerModal');document.getElementById('modalUserPhone').value=activeUserPhone||'';document.getElementById('modalOfferResult').classList.remove('show');document.getElementById('modalPhoneError').style.display='none';document.getElementById('modalWhatsAppBtn').classList.remove('show');m.classList.add('show');setTimeout(()=>document.getElementById('modalUserPhone').focus(),80);}
         function closeOfferModal(e=null){if(e&&e.target!==document.getElementById('offerModal'))return;document.getElementById('offerModal').classList.remove('show');pendingChat=null;}
         function checkModalOffer(){const v=cleanPhone(document.getElementById('modalUserPhone').value);if(!/^[6-9]\d{9}$/.test(v)){document.getElementById('modalPhoneError').style.display='block';return;}activeUserPhone=v;document.getElementById('modalPhoneError').style.display='none';const total=getCartTotals().subtotal,tier=getGiftTier(total);activeGiftName=tier?giftList[GIFT_TIERS[tier-1].giftIndex]:'';document.getElementById('modalDiscountPercent').innerText=tier?`₹${GIFT_TIERS[tier-1].amount.toLocaleString('en-IN')} GIFT`:'GIFT REWARD';document.getElementById('modalDiscountAmount').innerText=tier?`🎁 ${activeGiftName}`:'ఇంకా గిఫ్ట్ అన్‌లాక్ కాలేదు';document.getElementById('modalFinalAmount').innerText=`ఆర్డర్ మొత్తం ₹${total.toLocaleString('en-IN')}`;document.getElementById('modalCartBaseText').innerText=tier?`మీరు ₹${GIFT_TIERS[tier-1].amount.toLocaleString('en-IN')} గిఫ్ట్ రివార్డ్ సాధించారు.`:`ఇంకా ₹${(GIFT_TIERS.find(r=>total<r.amount)?.amount-total||0).toLocaleString('en-IN')} కొనుగోలు చేస్తే గిఫ్ట్ అన్‌లాక్ అవుతుంది.`;document.getElementById('modalGiftName').innerText=tier?`🎁 ${activeGiftName}`:'🎁 త్వరలో మీ గిఫ్ట్';document.getElementById('modalOfferResult').classList.add('show');document.getElementById('modalWhatsAppBtn').classList.add('show');}
@@ -3112,6 +3140,39 @@ header nav ul li:first-child{margin-left:2px!important}
   .cart-scroll-btn{width:38px;height:38px}
   .cart-order-any-total-note{font-size:10px}
 }
+
+/* ===== CART UX PATCH ===== */
+.cart-sidebar{overflow-y:auto!important;overflow-x:hidden!important;height:100dvh!important;display:block!important;-webkit-overflow-scrolling:touch!important;scroll-behavior:smooth!important}
+.cart-header,.cart-top-offer,.cart-items,.cart-footer{flex:none!important}
+.cart-items{max-height:none!important;height:auto!important;overflow:visible!important;min-height:180px!important;padding-bottom:18px!important}
+.cart-footer{position:relative!important;background:#fff!important;z-index:20!important;padding-bottom:28px!important}
+.gift-suggestions-title{margin:12px 0 6px;font-size:12px;font-weight:900;color:#6a4c00}
+.gift-suggestions-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.gift-suggestion-card{min-width:0!important;margin-top:0!important;padding:9px!important;align-items:center!important}
+.gift-suggestion-card img{width:58px!important;height:58px!important;flex:0 0 58px!important}
+.gift-suggestion-info strong{font-size:10px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cart-empty-state{text-align:center;padding:55px 20px;color:#777}.cart-empty-state>div{font-size:48px}.cart-empty-state h4{margin:10px 0 5px;color:var(--burgundy);font-size:18px}.cart-empty-state p{font-size:12px}
+.cart-scroll-controls{position:fixed!important;right:24px!important;bottom:105px!important;z-index:9999!important}
+.cart-whatsapp-order-btn{display:flex!important;visibility:visible!important;opacity:1!important}
+@media(max-width:700px){.gift-suggestions-grid{grid-template-columns:1fr}.cart-sidebar{padding-bottom:16px!important}.cart-footer{padding-bottom:40px!important}.cart-scroll-controls{right:12px!important;bottom:100px!important}}
 </style>
 </body>
 </html>
+<style id="cart-friendly-quick-actions">
+/* ===== Friendly cart quick actions ===== */
+.cart-quick-actions{
+  max-width:1120px;width:100%;margin:0 auto 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  position:sticky;top:0;z-index:25;background:#fff;padding:4px 0 10px;
+}
+.cart-quick-actions button{
+  min-height:48px;border-radius:12px;font-weight:900;font-size:14px;cursor:pointer;transition:.2s;
+}
+.cart-continue-shopping-btn{border:1px solid #d9c27a;background:#fffdf5;color:var(--burgundy);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.cart-continue-shopping-btn:hover{background:#fff7df;transform:translateY(-1px)}
+.cart-quick-whatsapp-btn{border:0;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 5px 14px rgba(37,211,102,.2)}
+.cart-quick-whatsapp-btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+@media(max-width:600px){
+ .cart-quick-actions{gap:7px;padding:3px 0 8px;margin-bottom:9px}
+ .cart-quick-actions button{min-height:44px;font-size:12px;padding:8px 6px}
+}
+</style>
