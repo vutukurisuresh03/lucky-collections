@@ -1028,7 +1028,19 @@
             font-weight: 900;
             cursor: pointer;
         }
-        @media (max-width: 420px) {
+        /* FREE GIFT REWARD TIERS INSIDE CART */
+        .cart-gift-rewards{display:flex;flex-direction:column;gap:8px;padding:9px}
+        .cart-gift-tier{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid #ead58b;border-radius:10px;background:#fff;transition:.25s ease}
+        .cart-gift-tier.unlocked{background:linear-gradient(135deg,#fff7d6,#fff,#fff1f4);border-color:#c9a227;box-shadow:0 5px 15px rgba(201,162,39,.14)}
+        .cart-gift-tier.locked{opacity:.62}
+        .cart-gift-tier .gift-tier-icon{font-size:24px;flex:0 0 28px;text-align:center}
+        .cart-gift-tier .gift-tier-copy{flex:1;min-width:0}
+        .cart-gift-tier .gift-tier-title{font-size:11.5px;font-weight:900;color:var(--burgundy)}
+        .cart-gift-tier .gift-tier-name{font-size:10.5px;color:#765400;font-weight:700;line-height:1.35;margin-top:2px}
+        .cart-gift-tier .gift-tier-status{flex-shrink:0;font-size:9.5px;font-weight:900;padding:5px 7px;border-radius:999px;background:#f1f1f1;color:#777}
+        .cart-gift-tier.unlocked .gift-tier-status{background:#198754;color:#fff}
+        .cart-gift-success{text-align:center;padding:8px 10px 2px;color:#138a3b;font-size:12px;font-weight:900}
+                @media (max-width: 420px) {
             .cart-top-offer-body { padding: 8px; gap: 7px; }
             .cart-top-offer-img { width: 58px; height: 58px; flex-basis: 58px; }
             .cart-top-offer-title { font-size: 12px; }
@@ -1713,14 +1725,6 @@ header nav ul li:first-child{margin-left:2px!important}
                 <a id="founderPhoneBtn" href="tel:919876543210" class="btn-gold founder-phone-btn"><i class="fa-solid fa-phone"></i> కాల్ చేయండి</a>
             </div>
 
-            <!-- SPARKING MAGICAL ANIMATED OFFER BUTTON -->
-            <button class="magic-offer-btn" onclick="openOfferModal()">
-                <i class="fa-solid fa-sparkles sparkle-icon"></i> 
-                <span>✨ ప్రతీ ₹2000 కొనుగోలుపై ఉచిత గిఫ్ట్! మీ గిఫ్ట్ ఏంటో చూడండి ✨</span>
-                <i class="fa-solid fa-sparkles sparkle-icon"></i>
-            </button>
-
-            <!-- OFFER BOX: now opens as a front popup -->
             <div id="offerBox" style="display:none;"></div>
 
             </div>
@@ -1777,34 +1781,23 @@ header nav ul li:first-child{margin-left:2px!important}
             <h3>మీ షాపింగ్ కార్ట్</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
         </div>
-        <!-- This banner is visible to the customer at the TOP of the cart after any item is added. -->
-        <div class="cart-top-offer" id="cartTopOffer" onclick="goToExtraOfferItem(event)">
-            <div class="cart-top-offer-head">🛍️ ఇంకొక ఐటమ్ కూడా తీసుకోండి — ప్రత్యేక ఆఫర్ పొందండి!</div>
-            <div class="cart-top-offer-body">
-                <img id="cartTopOfferImg" class="cart-top-offer-img" src="extra-offer.png" alt="Special Offer Item" onerror="this.src=''; this.style.background='linear-gradient(135deg,#fff8dc,#fff)';">
-                <div class="cart-top-offer-copy">
-                    <div class="cart-top-offer-title" id="cartTopOfferTitle">✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి</div>
-                    <span class="cart-top-offer-text" id="cartTopOfferText">మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.</span>
-                </div>
-                <button type="button" class="cart-top-offer-btn" onclick="goToExtraOfferItem(event)">చూడండి →</button>
-            </div>
+        <!-- Free-gift rewards are shown at the TOP of the cart after an item is added. -->
+        <div class="cart-top-offer" id="cartTopOffer">
+            <div class="cart-top-offer-head" id="cartGiftRewardHead">🎁 కొనుగోలు గిఫ్ట్ రివార్డ్స్</div>
+            <div class="cart-gift-rewards" id="cartGiftRewards"></div>
         </div>
 
         <div class="cart-items" id="cart-items-container">
             <p style="text-align: center; color: #777; margin-top: 30px;">కార్ట్ ఖాళీగా ఉంది.</p>
         </div>
         <div class="cart-footer">
-            <div id="cartDiscountNote" style="font-size:11px; color:#856404; background:#fff3cd; padding:6px; border-radius:4px; margin-bottom:8px; display:none;">
-                ⚠️ ఆఫర్ డిస్కౌంట్ కేవలం 1-Gram Gold & Combos‌కు మాత్రమే అప్లై అవుతుంది.
-            </div>
-            
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:#555; margin-bottom:4px;">
+<div style="display:flex; justify-content:space-between; font-size:13px; color:#555; margin-bottom:4px;">
                 <span>సబ్ టోటల్:</span>
                 <span id="cart-subtotal-price">₹0</span>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:13px; color:#28a745; margin-bottom:8px;">
-                <span>డిస్కౌంట్ (1 Gram Gold/Combos):</span>
-                <span id="cart-discount-price">-₹0</span>
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:#8a1728; margin-bottom:8px;">
+                <span>🎁 ఉచిత గిఫ్ట్:</span>
+                <span id="cart-discount-price">గిఫ్ట్ రివార్డ్</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:16px; border-top:1px dashed #ccc; padding-top:6px; margin-bottom:15px;">
                 <span>మొత్తం చెల్లించాల్సింది:</span>
@@ -1815,29 +1808,24 @@ header nav ul li:first-child{margin-left:2px!important}
     </div>
 
 
-    <!-- OFFER POPUP MODAL -->
+    <!-- WHATSAPP ORDER DETAILS POPUP -->
     <div class="offer-modal" id="offerModal" onclick="closeOfferModal(event)">
         <div class="offer-page" onclick="event.stopPropagation()">
             <button class="offer-close-btn" onclick="closeOfferModal()" aria-label="Close">&times;</button>
-            <div style="text-align:center; font-size:34px;">🎁✨</div>
-            <h2 class="offer-page-title">ఆఫర్ చెక్ చేసుకోండి</h2>
-            <div class="offer-page-subtitle">మీ మొబైల్ నంబర్ ఎంటర్ చేస్తే మీకు వచ్చిన ప్రత్యేక డిస్కౌంట్ వెంటనే కనిపిస్తుంది</div>
-
+            <div style="text-align:center; font-size:34px;">🛍️📱</div>
+            <h2 class="offer-page-title">వాట్సాప్ ఆర్డర్</h2>
+            <div class="offer-page-subtitle">మీ మొబైల్ నంబర్ ఎంటర్ చేయండి. మీ ఆర్డర్ వివరాలు తేదీ & సమయంతో వాట్సాప్‌లో పంపబడతాయి.</div>
             <div class="offer-phone-row">
                 <input type="tel" id="modalUserPhone" placeholder="10 అంకెల మొబైల్ నంబర్" maxlength="10" inputmode="numeric" autocomplete="tel">
-                <button class="offer-check-btn" onclick="checkModalOffer()">చెక్ చేసుకోండి</button>
+                <button class="offer-check-btn" onclick="checkModalOffer()">కొనసాగించండి</button>
             </div>
             <div class="offer-error" id="modalPhoneError">⚠️ దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను ఎంటర్ చేయండి.</div>
-
             <div class="offer-result-big" id="modalOfferResult">
-                <div style="font-size:14px; font-weight:900; color:var(--burgundy);">🎉 మీ నంబర్‌కు వచ్చిన ప్రత్యేక ఆఫర్</div>
-                <span class="offer-percent" id="modalDiscountPercent">5% OFF</span>
-                <div id="modalCartBaseText" style="font-size:13px; color:#555; font-weight:700;">కార్ట్‌లోని eligible items మీద</div>
-                <div class="offer-save" id="modalDiscountAmount">₹0 డిస్కౌంట్</div>
-                <div class="offer-final" id="modalFinalAmount">చెల్లించాల్సింది ₹0</div>
-                <div class="offer-gift" id="modalGiftName">🎁 ప్రత్యేక గిఫ్ట్</div>
-                <div class="offer-result-note">💡 ఈ డిస్కౌంట్ కేవలం <b>1 Gram Gold</b> మరియు <b>Combos</b> పై మాత్రమే వర్తిస్తుంది. ఇతర క్యాటగిరీలకు ఈ డిస్కౌంట్ వర్తించదు.</div>
-                <button class="offer-whatsapp-btn" id="modalWhatsAppBtn" onclick="continueOfferWhatsApp()"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat కొనసాగించండి</button>
+                <div style="font-size:14px; font-weight:900; color:var(--burgundy);">✅ ఆర్డర్ వివరాలు సిద్ధంగా ఉన్నాయి</div>
+                <div id="modalCartBaseText" style="font-size:13px; color:#555; font-weight:700; margin-top:10px;">మీ ఆర్డర్ వివరాలు వాట్సాప్‌లో పంపడానికి సిద్ధంగా ఉన్నాయి.</div>
+                <div class="offer-gift" id="modalGiftName">🎁 మీ గిఫ్ట్ రివార్డ్</div>
+                <div class="offer-result-note">📱 మీ మొబైల్ నంబర్, ఆర్డర్ వివరాలు, తేదీ & సమయం వాట్సాప్ మెసేజ్‌లో ఆటోమేటిక్‌గా చేర్చబడతాయి.</div>
+                <button class="offer-whatsapp-btn" id="modalWhatsAppBtn" onclick="continueOfferWhatsApp()"><i class="fa-brands fa-whatsapp"></i> WhatsAppలో కొనసాగించండి</button>
             </div>
         </div>
     </div>
@@ -2037,16 +2025,9 @@ header nav ul li:first-child{margin-left:2px!important}
         let cart = [];
         let phoneNo = STORE_DATA.whatsapp;
         let activeUserPhone = "";
-        let activeDiscountPercent = 0;
         let activeGiftName = "";
         let pendingChat = null;
-        const DISCOUNT_CATEGORIES = ['gold', 'combos'];
-        // Customer-facing cart recommendation. Replace extra-offer.png with your own product image.
-        const CART_EXTRA_OFFER = {
-            image: 'extra-offer.png',
-            title: '✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి',
-            text: 'మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.'
-        };
+        let lastGiftTier = 0;
 
         Object.entries(STORE_DATA.categories).forEach(([key, cat]) => {
             cat.products.forEach((p, index) => {
@@ -2071,6 +2052,92 @@ header nav ul li:first-child{margin-left:2px!important}
             "గోల్డ్ కవరింగ్ గ్లాస్ బ్యాంగిల్స్ 2 జతలు 🛍️",
             "ప్రీమియం రోజ్ గోల్డ్ బ్రాస్లెట్ ✨"
         ];
+
+        const GIFT_TIERS = [
+            { amount: 1000, giftIndex: 0 },
+            { amount: 2000, giftIndex: 1 },
+            { amount: 3000, giftIndex: 2 }
+        ];
+
+        function getGiftTier(subtotal) {
+            let tier = 0;
+            GIFT_TIERS.forEach((reward, index) => {
+                if (subtotal >= reward.amount) tier = index + 1;
+            });
+            return tier;
+        }
+
+        function getUnlockedGifts(subtotal) {
+            return GIFT_TIERS.filter(reward => subtotal >= reward.amount)
+                .map(reward => ({ amount: reward.amount, gift: giftList[reward.giftIndex] }));
+        }
+
+        function renderCartGiftRewards(subtotal, animateUnlock = true) {
+            const topOffer = document.getElementById('cartTopOffer');
+            const rewards = document.getElementById('cartGiftRewards');
+            if (!topOffer || !rewards) return;
+
+            if (subtotal <= 0) {
+                topOffer.classList.remove('show');
+                rewards.innerHTML = '';
+                lastGiftTier = 0;
+                return;
+            }
+
+            const currentTier = getGiftTier(subtotal);
+            const unlocked = getUnlockedGifts(subtotal);
+            rewards.innerHTML = GIFT_TIERS.map(reward => {
+                const isUnlocked = subtotal >= reward.amount;
+                const gift = giftList[reward.giftIndex];
+                return `<div class="cart-gift-tier ${isUnlocked ? 'unlocked' : 'locked'}">
+                    <div class="gift-tier-icon">${isUnlocked ? '🎁' : '🔒'}</div>
+                    <div class="gift-tier-copy">
+                        <div class="gift-tier-title">₹${reward.amount.toLocaleString('en-IN')} కొనుగోలుకు గిఫ్ట్</div>
+                        <div class="gift-tier-name">${escapeHtmlAttr(gift)}</div>
+                    </div>
+                    <div class="gift-tier-status">${isUnlocked ? 'మీరు గెలుచుకున్నారు' : 'ఇంకా అవసరం ₹' + Math.max(0, reward.amount - subtotal).toLocaleString('en-IN')}</div>
+                </div>`;
+            }).join('');
+
+            if (currentTier > 0) {
+                const success = document.createElement('div');
+                success.className = 'cart-gift-success';
+                success.innerText = `🎉 మీరు ${currentTier} గిఫ్ట్ రివార్డ్${currentTier > 1 ? 'లు' : ''} గెలుచుకున్నారు!`;
+                rewards.prepend(success);
+            }
+
+            topOffer.classList.add('show');
+
+            if (animateUnlock && currentTier > lastGiftTier) {
+                activeGiftName = unlocked[unlocked.length - 1]?.gift || '';
+                launchGiftRewardCelebration(activeGiftName, GIFT_TIERS[currentTier - 1].amount);
+            }
+            lastGiftTier = currentTier;
+        }
+
+        function launchGiftRewardCelebration(giftName, amount) {
+            const old = document.querySelector('.front-celebration-layer');
+            if (old) old.remove();
+            const layer = document.createElement('div');
+            layer.className = 'front-celebration-layer';
+            layer.innerHTML = `<div class="front-blast-center"></div>
+                <div class="front-celebration-text">🎉 మీరు గెలుచుకున్నారు! 🎁<br><span style="font-size:.55em">${amount.toLocaleString('en-IN')} రూపాయల గిఫ్ట్: ${escapeHtmlAttr(giftName)}</span></div>`;
+            const count = window.innerWidth < 600 ? 70 : 110;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('span');
+                p.className = 'front-blast-particle';
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 130 + Math.random() * Math.max(window.innerWidth, window.innerHeight) * .62;
+                p.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+                p.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+                p.style.setProperty('--rot', `${Math.round(Math.random() * 900 - 450)}deg`);
+                p.style.background = ['#ff0055','#ffb300','#00c6ff','#25D366','#8e44ad','#ffffff'][i % 6];
+                p.style.animationDelay = `${Math.random() * .18}s`;
+                layer.appendChild(p);
+            }
+            document.body.appendChild(layer);
+            setTimeout(() => layer.remove(), 2300);
+        }
 
         function cleanPhone(value) {
             return String(value || '').replace(/\D/g, '');
@@ -2201,60 +2268,33 @@ header nav ul li:first-child{margin-left:2px!important}
             document.getElementById('cart-count').innerText = cart.length;
             const container = document.getElementById('cart-items-container');
             const subtotalEl = document.getElementById('cart-subtotal-price');
-            const discountEl = document.getElementById('cart-discount-price');
+            const giftEl = document.getElementById('cart-discount-price');
             const totalEl = document.getElementById('cart-total-price');
-            const cartNote = document.getElementById('cartDiscountNote');
-            const topOffer = document.getElementById('cartTopOffer');
 
             if (cart.length === 0) {
-                container.innerHTML = `<p style="text-align: center; color: #777; margin-top: 30px;">కార్ట్ ఖాళీగా ఉంది.</p>`;
+                container.innerHTML = `<p style="text-align:center;color:#777;margin-top:30px">కార్ట్ ఖాళీగా ఉంది.</p>`;
                 subtotalEl.innerText = '₹0';
-                discountEl.innerText = '-₹0';
+                giftEl.innerText = 'గిఫ్ట్ రివార్డ్';
                 totalEl.innerText = '₹0';
-                cartNote.style.display = 'none';
-                if (topOffer) topOffer.classList.remove('show');
+                renderCartGiftRewards(0, false);
                 return;
             }
 
-            container.innerHTML = '';
-            let subtotal = 0, discountableSubtotal = 0, hasNonDiscountable = false;
+            let subtotal = 0;
+            container.innerHTML = cart.map((item,index) => {
+                subtotal += Number(item.newPrice || 0);
+                return `<div style="display:flex;gap:10px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:10px;align-items:center">
+                    <img src="${item.img}" style="width:52px;height:52px;object-fit:contain;border-radius:10px;background:#fff;cursor:pointer" onclick="openImageModal('${escapeJsString(item.img)}','${escapeJsString(productName(item))}','${escapeJsString(item.defaultImg)}')" onerror="this.src='${item.defaultImg}'">
+                    <div style="flex:1"><h4 style="font-size:12px;font-weight:700">${escapeHtmlAttr(productName(item))}</h4><p style="font-size:12px;color:var(--burgundy);font-weight:800;margin-top:3px">₹${item.newPrice}</p></div>
+                    <i class="fa-solid fa-trash" style="color:#b42318;cursor:pointer;font-size:14px" onclick="removeFromCart(${index})"></i>
+                </div>`;
+            }).join('');
 
-            cart.forEach((item, index) => {
-                subtotal += item.newPrice;
-                if (['gold', 'combos'].includes(item.category)) discountableSubtotal += item.newPrice;
-                else hasNonDiscountable = true;
-
-                container.innerHTML += `
-                    <div style="display:flex; gap:10px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:8px; align-items:center;">
-                        <img src="${item.img}" style="width:45px; height:45px; object-fit:contain; border-radius:4px; background:#fff; cursor:pointer;" onclick="openImageModal('${escapeJsString(item.img)}', '${escapeJsString(item.name)}', '${escapeJsString(item.defaultImg)}')" onerror="this.src='${item.defaultImg}'">
-                        <div style="flex:1;"><h4 style="font-size:12px; font-weight:600;">${escapeHtmlAttr(item.name)}</h4><p style="font-size:12px; color:var(--burgundy); font-weight:bold;">₹${item.newPrice}</p></div>
-                        <i class="fa-solid fa-trash" style="color: red; cursor: pointer; font-size:14px;" onclick="removeFromCart(${index})"></i>
-                    </div>`;
-            });
-
-            cartNote.style.display = activeDiscountPercent > 0 && discountableSubtotal > 0 ? 'block' : 'none';
-            // Always show the recommendation at the TOP of the cart for the customer.
-            if (topOffer) {
-                topOffer.classList.add('show');
-                const img = document.getElementById('cartTopOfferImg');
-                const title = document.getElementById('cartTopOfferTitle');
-                const text = document.getElementById('cartTopOfferText');
-                if (img) img.src = CART_EXTRA_OFFER.image;
-                if (title) title.innerText = CART_EXTRA_OFFER.title;
-                if (text) text.innerText = CART_EXTRA_OFFER.text;
-            }
-            const discountAmount = Math.round((discountableSubtotal * activeDiscountPercent) / 100);
-            const finalTotal = subtotal - discountAmount;
-            subtotalEl.innerText = `₹${subtotal}`;
-            discountEl.innerText = `-₹${discountAmount} (${activeDiscountPercent}%)`;
-            totalEl.innerText = `₹${finalTotal}`;
-        }
-
-        function goToExtraOfferItem(event) {
-            if (event) event.stopPropagation();
-            // Send the customer to the Combos section where the extra offer item can be viewed.
-            filterAndScroll('combos');
-            toggleCart();
+            const tier = getGiftTier(subtotal);
+            subtotalEl.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+            giftEl.innerText = tier > 0 ? `${tier} గిఫ్ట్${tier > 1 ? 'లు' : ''}` : 'గిఫ్ట్ రివార్డ్';
+            totalEl.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+            renderCartGiftRewards(subtotal, true);
         }
 
         function removeFromCart(index) {
@@ -2266,30 +2306,6 @@ header nav ul li:first-child{margin-left:2px!important}
             const sidebar = document.getElementById('cart-sidebar');
             if (forceOpen) sidebar.classList.add('open');
             else sidebar.classList.toggle('open');
-        }
-
-        function getStableOffer(phoneVal) {
-            // Same mobile number always gets the same offer.
-            // Different valid mobile numbers can get a different offer.
-            let hash = 0;
-            for (let i = 0; i < phoneVal.length; i++) {
-                hash = ((hash << 5) - hash + phoneVal.charCodeAt(i)) | 0;
-            }
-            hash = Math.abs(hash);
-            const percents = [5, 15, 20];
-            const percent = percents[hash % percents.length];
-            const gift = giftList[hash % giftList.length];
-            return { percent, gift };
-        }
-
-        function getCartTotals() {
-            const subtotal = cart.reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
-            const discountableSubtotal = cart
-                .filter(item => DISCOUNT_CATEGORIES.includes(item.category))
-                .reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
-            const discountAmount = Math.round((discountableSubtotal * activeDiscountPercent) / 100);
-            const total = subtotal - discountAmount;
-            return { subtotal, discountableSubtotal, discountAmount, total };
         }
 
         function getIndiaDateTime() {
@@ -2332,98 +2348,32 @@ header nav ul li:first-child{margin-left:2px!important}
                 document.getElementById('modalOfferResult').classList.remove('show');
                 return;
             }
-
             error.style.display = 'none';
             activeUserPhone = phoneVal;
-            const offer = getStableOffer(phoneVal);
-            activeDiscountPercent = offer.percent;
-            activeGiftName = offer.gift;
-
-            // Keep the old variables/UI in sync for existing cart logic.
+            const subtotal = cart.reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
+            const tier = getGiftTier(subtotal);
+            const unlocked = getUnlockedGifts(subtotal);
+            activeGiftName = unlocked.length ? unlocked[unlocked.length - 1].gift : 'ఇంకా గిఫ్ట్ అన్‌లాక్ కాలేదు';
             const oldInput = document.getElementById('userPhone');
             if (oldInput) oldInput.value = phoneVal;
-            const oldResult = document.getElementById('offerResult');
-            if (oldResult) oldResult.style.display = 'none';
-
-            let offerBase = 0;
-            let offerDiscount = 0;
-            let offerFinal = 0;
-            let offerLabel = '1 Gram Gold / Combos మీద మాత్రమే డిస్కౌంట్ వర్తిస్తుంది';
-
-            if (pendingChat && pendingChat.type === 'product') {
-                const product = products.find(p => p.id === pendingChat.productId);
-                if (product && DISCOUNT_CATEGORIES.includes(product.category)) {
-                    offerBase = Number(product.newPrice || 0);
-                    offerDiscount = Math.round(offerBase * activeDiscountPercent / 100);
-                    offerFinal = offerBase - offerDiscount;
-                    offerLabel = `ఈ ప్రొడక్ట్ ధర: ₹${offerBase.toLocaleString('en-IN')}`;
-                }
-            } else {
-                const totals = getCartTotals();
-                offerBase = totals.discountableSubtotal;
-                offerDiscount = totals.discountAmount;
-                offerFinal = totals.total;
-                offerLabel = cart.length
-                    ? `1 Gram Gold / Combos eligible మొత్తం: ₹${totals.discountableSubtotal.toLocaleString('en-IN')}`
-                    : '1 Gram Gold / Combos మీద మాత్రమే డిస్కౌంట్ వర్తిస్తుంది';
-            }
-
-            document.getElementById('modalDiscountPercent').innerText = `${activeDiscountPercent}% OFF`;
-            document.getElementById('modalDiscountAmount').innerText = `₹${offerDiscount.toLocaleString('en-IN')} డిస్కౌంట్`;
-            document.getElementById('modalFinalAmount').innerText = (offerBase > 0)
-                ? `చెల్లించాల్సింది ₹${offerFinal.toLocaleString('en-IN')}`
-                : 'కార్ట్‌లో eligible ఐటమ్స్ యాడ్ చేసిన తర్వాత డిస్కౌంట్ మొత్తం ఆటోమేటిక్‌గా చూపిస్తుంది';
-            document.getElementById('modalCartBaseText').innerText = offerLabel;
-            document.getElementById('modalGiftName').innerText = `🎁 ${activeGiftName}`;
+            document.getElementById('modalCartBaseText').innerText = cart.length
+                ? `మీ కార్ట్ మొత్తం ₹${subtotal.toLocaleString('en-IN')}. ${tier > 0 ? `${tier} గిఫ్ట్ రివార్డ్${tier > 1 ? 'లు' : ''} అన్‌లాక్ అయ్యాయి.` : '₹1,000 గిఫ్ట్ కోసం ఇంకా ₹' + Math.max(0, 1000 - subtotal).toLocaleString('en-IN') + ' కొనుగోలు చేయండి.'}`
+                : 'మీ కార్ట్‌లో వస్తువులు యాడ్ చేసిన తర్వాత గిఫ్ట్ రివార్డ్ ఇక్కడ కనిపిస్తుంది.';
+            document.getElementById('modalGiftName').innerText = tier > 0
+                ? `🎁 మీరు గెలుచుకున్న గిఫ్ట్: ${activeGiftName}`
+                : '🎁 గిఫ్ట్ రివార్డ్ కోసం ₹1,000 కొనుగోలు చేయండి';
             document.getElementById('modalOfferResult').classList.add('show');
             document.getElementById('modalWhatsAppBtn').classList.toggle('show', !!pendingChat);
-            updateCartUI();
-            launchFrontCelebration();
-        }
-
-        function launchFrontCelebration() {
-            const old = document.querySelector('.front-celebration-layer');
-            if (old) old.remove();
-            const layer = document.createElement('div');
-            layer.className = 'front-celebration-layer';
-            layer.innerHTML = '<div class="front-blast-center"></div><div class="front-celebration-text">🎉 SPECIAL OFFER 🎉</div>';
-            const count = window.innerWidth < 600 ? 70 : 110;
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('span');
-                p.className = 'front-blast-particle';
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 130 + Math.random() * Math.max(window.innerWidth, window.innerHeight) * .62;
-                p.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
-                p.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
-                p.style.setProperty('--rot', `${Math.round(Math.random() * 900 - 450)}deg`);
-                p.style.background = ['#ff0055','#ffb300','#00c6ff','#25D366','#8e44ad','#ffffff'][i % 6];
-                p.style.animationDelay = `${Math.random() * .18}s`;
-                layer.appendChild(p);
-            }
-            document.body.appendChild(layer);
-            setTimeout(() => layer.remove(), 2300);
-        }
-
-        function startDirectChat(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            openOfferModal({ type: 'product', productId });
         }
 
         function continueOfferWhatsApp() {
-            if (!activeUserPhone) return;
-            if (!pendingChat) return;
+            if (!activeUserPhone || !pendingChat) return;
             const chat = pendingChat;
             const dateTime = getIndiaDateTime();
-            const offer = `${activeDiscountPercent}% OFF`;
-
             if (chat.type === 'product') {
                 const product = products.find(p => p.id === chat.productId);
                 if (!product) return;
-                const eligible = DISCOUNT_CATEGORIES.includes(product.category);
-                const discountAmount = eligible ? Math.round(product.newPrice * activeDiscountPercent / 100) : 0;
-                const finalPrice = product.newPrice - discountAmount;
-                const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్‌లో ఈ ప్రొడక్ట్ చూశాను:%0A%0A*ప్రొడక్ట్:* ${encodeURIComponent(product.name)}%0A*ధర:* ₹${product.newPrice}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(dateTime)}%0A*ఆఫర్:* ${eligible ? offer : 'ఈ క్యాటగిరీకి డిస్కౌంట్ వర్తించదు'}%0A*డిస్కౌంట్:* ₹${discountAmount}%0A*ఆఫర్ తర్వాత ధర:* ₹${finalPrice}%0A%0Aనేను దీని గురించి సమాచారం / ఆర్డర్ పొందాలనుకుంటున్నాను.`;
+                const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్‌లో ఈ ప్రొడక్ట్ గురించి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A*ప్రొడక్ట్:* ${encodeURIComponent(product.name)}%0A*ధర:* ₹${product.newPrice}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(dateTime)}%0A%0Aదయచేసి ఈ ప్రొడక్ట్ గురించి సమాచారం / ఆర్డర్ వివరాలు తెలియజేయండి.`;
                 window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
             } else if (chat.type === 'cart') {
                 checkoutCart(true);
@@ -2431,7 +2381,6 @@ header nav ul li:first-child{margin-left:2px!important}
         }
 
         function orderOnWhatsApp(productName, price) {
-            // Kept for compatibility with any older inline button.
             const found = products.find(p => p.name === productName);
             if (found) startDirectChat(found.id);
         }
@@ -2447,12 +2396,62 @@ header nav ul li:first-child{margin-left:2px!important}
             }
             if (!activeUserPhone) return;
 
-            const totals = getCartTotals();
+            const subtotal = cart.reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
+            const unlocked = getUnlockedGifts(subtotal);
+            const giftText = unlocked.length
+                ? unlocked.map(g => `₹${g.amount.toLocaleString('en-IN')} గిఫ్ట్: ${encodeURIComponent(g.gift)}`).join('%0A')
+                : '₹1,000 గిఫ్ట్ ఇంకా అన్‌లాక్ కాలేదు';
             const itemsList = cart.map(item => `- ${encodeURIComponent(item.name)} (₹${item.newPrice})`).join('%0A');
-            const couponText = activeDiscountPercent > 0
-                ? `%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(getIndiaDateTime())}%0A*ఆఫర్:* ${activeDiscountPercent}% OFF%0A*డిస్కౌంట్ వర్తించే మొత్తం:* ₹${totals.discountableSubtotal}%0A*డిస్కౌంట్:* -₹${totals.discountAmount}%0A*ఉచిత గిఫ్ట్:* ${encodeURIComponent(activeGiftName)}`
-                : '';
-            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A${itemsList}%0A%0A*సబ్ టోటల్:* ₹${totals.subtotal}${couponText}%0A*నెట్ చెల్లించాల్సింది:* ₹${totals.total}`;
+            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A${itemsList}%0A%0A*సబ్ టోటల్:* ₹${subtotal.toLocaleString('en-IN')}%0A*గిఫ్ట్ రివార్డ్స్:*%0A${giftText}%0A*మొత్తం చెల్లించాల్సింది:* ₹${subtotal.toLocaleString('en-IN')}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(getIndiaDateTime())}`;
+            window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
+            document.getElementById('offerModal').classList.remove('show');
+            pendingChat = null;
+        }
+
+        function startDirectChat(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            openOfferModal({ type: 'product', productId });
+        }
+
+        function continueOfferWhatsApp() {
+            if (!activeUserPhone || !pendingChat) return;
+            const chat = pendingChat;
+            const dateTime = getIndiaDateTime();
+
+            if (chat.type === 'product') {
+                const product = products.find(p => p.id === chat.productId);
+                if (!product) return;
+                const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్‌లో ఈ ప్రొడక్ట్ గురించి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A*ప్రొడక్ట్:* ${encodeURIComponent(product.name)}%0A*ధర:* ₹${product.newPrice}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(dateTime)}%0A%0Aదయచేసి ఈ ప్రొడక్ట్ గురించి సమాచారం / ఆర్డర్ వివరాలు తెలియజేయండి.`;
+                window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
+            } else if (chat.type === 'cart') {
+                checkoutCart(true);
+            }
+        }
+
+        function orderOnWhatsApp(productName, price) {
+            const found = products.find(p => p.name === productName);
+            if (found) startDirectChat(found.id);
+        }
+
+        function checkoutCart(fromOfferButton = false) {
+            if (cart.length === 0) {
+                alert('మీ కార్ట్‌లో ప్రొడక్ట్స్ ఏవీ లేవు!');
+                return;
+            }
+            if (!activeUserPhone && !fromOfferButton) {
+                openOfferModal({ type: 'cart' });
+                return;
+            }
+            if (!activeUserPhone) return;
+
+            const subtotal = cart.reduce((sum, item) => sum + Number(item.newPrice || 0), 0);
+            const unlocked = getUnlockedGifts(subtotal);
+            const giftText = unlocked.length
+                ? unlocked.map(g => `₹${g.amount.toLocaleString('en-IN')} గిఫ్ట్: ${encodeURIComponent(g.gift)}`).join('%0A')
+                : '₹1,000 గిఫ్ట్ ఇంకా అన్‌లాక్ కాలేదు';
+            const itemsList = cart.map(item => `- ${encodeURIComponent(item.name)} (₹${item.newPrice})`).join('%0A');
+            const message = `నమస్కారం! నేను Lucky Collections వెబ్‌సైట్ నుంచి ఆర్డర్ చేయాలనుకుంటున్నాను:%0A%0A${itemsList}%0A%0A*సబ్ టోటల్:* ₹${subtotal.toLocaleString('en-IN')}%0A*గిఫ్ట్ రివార్డ్స్:*%0A${giftText}%0A*మొత్తం చెల్లించాల్సింది:* ₹${subtotal.toLocaleString('en-IN')}%0A*మొబైల్ నంబర్:* ${activeUserPhone}%0A*తేదీ & సమయం:* ${encodeURIComponent(getIndiaDateTime())}`;
             window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`, '_blank');
             document.getElementById('offerModal').classList.remove('show');
             pendingChat = null;
@@ -2526,15 +2525,15 @@ header nav ul li:first-child{margin-left:2px!important}
       about:'మా లక్కీ కలెక్షన్ లో ప్రతీ నగ అత్యంత నాణ్యమైన గోల్డ్ ప్లేటింగ్ మరియు ట్రెడిషనల్ డిజైన్స్‌తో రూపొందించబడింది. చీరాల ప్రాంతంలో విశేష ఆదరణ పొందిన మా బ్రాండ్, ఇప్పుడు ఆన్‌లైన్ ద్వారా దేశ వ్యాప్తంగా కస్టమర్లకు సేవలు అందిస్తోంది.',
       services:['1 Gram Gold ఆభరణాలు','పెళ్లి ఆభరణాలు అద్దెకు (Rent)','డిజైనర్ మగ్గం వర్క్ బ్లౌజులు','ఫ్యాన్సీ & మ్యాచింగ్ బ్యాంగిల్స్','లగ్జరీ పెర్ఫ్యూమ్స్ & బ్యూటీ కేర్','100% గ్యారెంటీ క్వాలిటీ'],
       viewCollections:'కలెక్షన్స్ చూడండి', call:'కాల్ చేయండి',
-      giftBtn:'✨ ప్రతీ ₹2000 కొనుగోలుపై ఉచిత గిఫ్ట్! మీ గిఫ్ట్ ఏంటో చూడండి ✨',
+      giftBtn:'🎁 మీ గిఫ్ట్ రివార్డ్స్ కార్ట్‌లో చూడండి',
       shopCategory:'షాప్ బై క్యాటగిరీ', cart:'మీ షాపింగ్ కార్ట్', empty:'కార్ట్ ఖాళీగా ఉంది.',
-      cartOfferHead:'🛍️ ఇంకొక ఐటమ్ కూడా తీసుకోండి — ప్రత్యేక ఆఫర్ పొందండి!',
-      cartOfferTitle:'✨ మీ కార్ట్‌కు మరో ఐటమ్ జోడించండి',
-      cartOfferText:'మీరు ఇంకొక ఐటమ్ కొనుగోలు చేస్తే బ్రహ్మాండమైన ప్రత్యేక ఆఫర్ పొందండి.',
-      view:'చూడండి →', discountNote:'⚠️ ఆఫర్ డిస్కౌంట్ కేవలం 1-Gram Gold & Combos‌కు మాత్రమే అప్లై అవుతుంది.',
+      cartOfferHead:'🎁 కొనుగోలు గిఫ్ట్ రివార్డ్స్',
+      cartOfferTitle:'₹1,000 / ₹2,000 / ₹3,000 కొనుగోలుకు గిఫ్ట్',
+      cartOfferText:'కార్ట్ మొత్తం పెరిగిన కొద్దీ గిఫ్ట్ రివార్డ్స్ అన్‌లాక్ అవుతాయి.',
+      view:'చూడండి →', discountNote:'🎁 ₹1,000 / ₹2,000 / ₹3,000 కొనుగోలు గిఫ్ట్ రివార్డ్స్ కార్ట్‌లో చూపబడతాయి.',
       subtotal:'సబ్ టోటల్:', discount:'డిస్కౌంట్ (1 Gram Gold/Combos):', total:'మొత్తం చెల్లించాల్సింది:',
       orderWhatsapp:'వాట్సాప్‌లో ఆర్డర్ చేయండి', offerTitle:'ఆఫర్ చెక్ చేసుకోండి',
-      offerSubtitle:'మీ మొబైల్ నంబర్ ఎంటర్ చేస్తే మీకు వచ్చిన ప్రత్యేక డిస్కౌంట్ వెంటనే కనిపిస్తుంది',
+      offerSubtitle:'మీ మొబైల్ నంబర్ ఎంటర్ చేయండి. మీ ఆర్డర్ వివరాలు తేదీ & సమయంతో వాట్సాప్‌లో పంపబడతాయి.',
       phonePlaceholder:'10 అంకెల మొబైల్ నంబర్', check:'చెక్ చేసుకోండి',
       phoneError:'⚠️ దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను ఎంటర్ చేయండి.',
       specialOffer:'🎉 మీ నంబర్‌కు వచ్చిన ప్రత్యేక ఆఫర్', discountWord:'డిస్కౌంట్',
@@ -2562,15 +2561,15 @@ header nav ul li:first-child{margin-left:2px!important}
       about:'At Lucky Collections, every piece is created with quality gold plating and traditional designs. Our brand, loved in the Chirala region, now serves customers across India online.',
       services:['1 Gram Gold Jewellery','Wedding Jewellery on Rent','Designer Maggam Work Blouses','Fancy & Matching Bangles','Luxury Perfumes & Beauty Care','100% Guaranteed Quality'],
       viewCollections:'View Collections', call:'Call Now',
-      giftBtn:'✨ Free Gift on every ₹2000 purchase! See what your gift is ✨',
+      giftBtn:'🎁 See your free-gift rewards in the cart',
       shopCategory:'SHOP BY CATEGORY', cart:'Your Shopping Cart', empty:'Your cart is empty.',
       cartOfferHead:'🛍️ Add one more item — unlock a special offer!',
       cartOfferTitle:'✨ Add another item to your cart',
       cartOfferText:'Buy one more item and unlock a wonderful special offer.',
-      view:'View →', discountNote:'⚠️ Offer discount applies only to 1-Gram Gold & Combos.',
+      view:'View →', discountNote:'🎁 Free-gift rewards are shown in the cart at ₹1,000 / ₹2,000 / ₹3,000 purchase levels.',
       subtotal:'Subtotal:', discount:'Discount (1 Gram Gold/Combos):', total:'Total Payable:',
       orderWhatsapp:'Order on WhatsApp', offerTitle:'Check Your Offer',
-      offerSubtitle:'Enter your mobile number to instantly see your special discount',
+      offerSubtitle:'Enter your mobile number. Your order details will be sent on WhatsApp with date and time.',
       phonePlaceholder:'10-digit mobile number', check:'Check Offer',
       phoneError:'⚠️ Please enter a valid 10-digit mobile number.',
       specialOffer:'🎉 Special Offer for Your Number', discountWord:'Discount',
@@ -2598,15 +2597,15 @@ header nav ul li:first-child{margin-left:2px!important}
       about:'लकी कलेक्शंस में हर आभूषण उच्च गुणवत्ता वाली गोल्ड प्लेटिंग और पारंपरिक डिज़ाइन के साथ तैयार किया जाता है। चिराला क्षेत्र में पसंद किया जाने वाला हमारा ब्रांड अब ऑनलाइन पूरे भारत में ग्राहकों को सेवा देता है।',
       services:['1 ग्राम गोल्ड आभूषण','शादी के आभूषण किराये पर','डिज़ाइनर मग्गम वर्क ब्लाउज़','फैंसी और मैचिंग चूड़ियाँ','लक्ज़री परफ्यूम और ब्यूटी केयर','100% गारंटीड क्वालिटी'],
       viewCollections:'कलेक्शन देखें', call:'कॉल करें',
-      giftBtn:'✨ हर ₹2000 की खरीद पर मुफ्त गिफ्ट! अपना गिफ्ट देखें ✨',
+      giftBtn:'🎁 कार्ट में अपने गिफ्ट रिवॉर्ड देखें',
       shopCategory:'श्रेणी के अनुसार खरीदें', cart:'आपकी शॉपिंग कार्ट', empty:'आपकी कार्ट खाली है।',
       cartOfferHead:'🛍️ एक और आइटम लें — विशेष ऑफर पाएं!',
       cartOfferTitle:'✨ अपनी कार्ट में एक और आइटम जोड़ें',
       cartOfferText:'एक और आइटम खरीदें और शानदार विशेष ऑफर पाएं।',
-      view:'देखें →', discountNote:'⚠️ ऑफर डिस्काउंट केवल 1-ग्राम गोल्ड और कॉम्बोज पर लागू है।',
+      view:'देखें →', discountNote:'🎁 ₹1,000 / ₹2,000 / ₹3,000 खरीद स्तरों पर गिफ्ट रिवॉर्ड कार्ट में दिखेंगे।',
       subtotal:'सबटोटल:', discount:'डिस्काउंट (1 ग्राम गोल्ड/कॉम्बोज):', total:'कुल भुगतान:',
       orderWhatsapp:'व्हाट्सऐप पर ऑर्डर करें', offerTitle:'अपना ऑफर देखें',
-      offerSubtitle:'अपना मोबाइल नंबर दर्ज करें और तुरंत अपना विशेष डिस्काउंट देखें',
+      offerSubtitle:'अपना मोबाइल नंबर दर्ज करें। आपके ऑर्डर की जानकारी तारीख और समय के साथ WhatsApp पर भेजी जाएगी।',
       phonePlaceholder:'10 अंकों का मोबाइल नंबर', check:'ऑफर देखें',
       phoneError:'⚠️ कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।',
       specialOffer:'🎉 आपके नंबर के लिए विशेष ऑफर', discountWord:'डिस्काउंट',
@@ -2632,14 +2631,14 @@ header nav ul li:first-child{margin-left:2px!important}
       quality:'ಗುಣಮಟ್ಟ & ವಿಶ್ವಾಸ', founder:'ಲಕ್ಕಿ ಕಲೆಕ್ಷನ್ಸ್ ಮಾಲೀಕರು & ನಿರ್ವಹಣೆ',
       about:'ಲಕ್ಕಿ ಕಲೆಕ್ಷನ್ಸ್‌ನಲ್ಲಿ ಪ್ರತಿಯೊಂದು ಆಭರಣವೂ ಉತ್ತಮ ಗುಣಮಟ್ಟದ ಗೋಲ್ಡ್ ಪ್ಲೇಟಿಂಗ್ ಮತ್ತು ಸಾಂಪ್ರದಾಯಿಕ ವಿನ್ಯಾಸಗಳಿಂದ ತಯಾರಿಸಲಾಗಿದೆ. ಚೀರಾಲಾ ಪ್ರದೇಶದಲ್ಲಿ ಮೆಚ್ಚುಗೆ ಪಡೆದ ನಮ್ಮ ಬ್ರ್ಯಾಂಡ್ ಈಗ ಆನ್‌ಲೈನ್ ಮೂಲಕ ಭಾರತದೆಲ್ಲೆಡೆ ಸೇವೆ ನೀಡುತ್ತದೆ.',
       services:['1 ಗ್ರಾಂ ಗೋಲ್ಡ್ ಆಭರಣಗಳು','ಮದುವೆ ಆಭರಣಗಳು ಬಾಡಿಗೆಗೆ','ಡಿಸೈನರ್ ಮಗ್ಗಂ ವರ್ಕ್ ಬ್ಲೌಸ್‌ಗಳು','ಫ್ಯಾನ್ಸಿ & ಮ್ಯಾಚಿಂಗ್ ಬ್ಯಾಂಗಲ್ಸ್','ಲಕ್ಸುರಿ ಪರ್ಫ್ಯೂಮ್ಸ್ & ಬ್ಯೂಟಿ ಕೇರ್','100% ಗ್ಯಾರಂಟಿ ಗುಣಮಟ್ಟ'],
-      viewCollections:'ಕಲೆಕ್ಷನ್ ನೋಡಿ', call:'ಕರೆ ಮಾಡಿ', giftBtn:'✨ ಪ್ರತಿ ₹2000 ಖರೀದಿಗೆ ಉಚಿತ ಗಿಫ್ಟ್! ನಿಮ್ಮ ಗಿಫ್ಟ್ ನೋಡಿ ✨',
+      viewCollections:'ಕಲೆಕ್ಷನ್ ನೋಡಿ', call:'ಕರೆ ಮಾಡಿ', giftBtn:'🎁 ಕಾರ್ಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಗಿಫ್ಟ್ ರಿವಾರ್ಡ್‌ಗಳನ್ನು ನೋಡಿ',
       shopCategory:'ಕ್ಯಾಟಗರಿ ಮೂಲಕ ಶಾಪ್ ಮಾಡಿ', cart:'ನಿಮ್ಮ ಶಾಪಿಂಗ್ ಕಾರ್ಟ್', empty:'ನಿಮ್ಮ ಕಾರ್ಟ್ ಖಾಲಿಯಾಗಿದೆ.',
       cartOfferHead:'🛍️ ಇನ್ನೊಂದು ಐಟಂ ತೆಗೆದುಕೊಳ್ಳಿ — ವಿಶೇಷ ಆಫರ್ ಪಡೆಯಿರಿ!', cartOfferTitle:'✨ ನಿಮ್ಮ ಕಾರ್ಟ್‌ಗೆ ಇನ್ನೊಂದು ಐಟಂ ಸೇರಿಸಿ',
       cartOfferText:'ಇನ್ನೊಂದು ಐಟಂ ಖರೀದಿಸಿ ಮತ್ತು ವಿಶೇಷ ಆಫರ್ ಪಡೆಯಿರಿ.', view:'ನೋಡಿ →',
-      discountNote:'⚠️ ಆಫರ್ ಡಿಸ್ಕೌಂಟ್ 1-ಗ್ರಾಂ ಗೋಲ್ಡ್ ಮತ್ತು ಕಾಂಬೋಗಳಿಗೆ ಮಾತ್ರ ಅನ್ವಯಿಸುತ್ತದೆ.',
+      discountNote:'🎁 ₹1,000 / ₹2,000 / ₹3,000 ಖರೀದಿ ಹಂತಗಳಲ್ಲಿ ಗಿಫ್ಟ್ ರಿವಾರ್ಡ್‌ಗಳು ಕಾರ್ಟ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.',
       subtotal:'ಸಬ್‌ಟೋಟಲ್:', discount:'ಡಿಸ್ಕೌಂಟ್ (1 ಗ್ರಾಂ ಗೋಲ್ಡ್/ಕಾಂಬೋ):', total:'ಒಟ್ಟು ಪಾವತಿ:',
       orderWhatsapp:'ವಾಟ್ಸ್ಆಪ್‌ನಲ್ಲಿ ಆರ್ಡರ್ ಮಾಡಿ', offerTitle:'ನಿಮ್ಮ ಆಫರ್ ನೋಡಿ',
-      offerSubtitle:'ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ವಿಶೇಷ ಡಿಸ್ಕೌಂಟ್ ತಕ್ಷಣ ನೋಡಿ',
+      offerSubtitle:'ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ. ನಿಮ್ಮ ಆರ್ಡರ್ ವಿವರಗಳನ್ನು ದಿನಾಂಕ ಮತ್ತು ಸಮಯದೊಂದಿಗೆ WhatsApp ಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.',
       phonePlaceholder:'10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ', check:'ಆಫರ್ ಪರಿಶೀಲಿಸಿ',
       phoneError:'⚠️ ದಯವಿಟ್ಟು ಸರಿಯಾದ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.',
       specialOffer:'🎉 ನಿಮ್ಮ ಸಂಖ್ಯೆಗೆ ವಿಶೇಷ ಆಫರ್', discountWord:'ಡಿಸ್ಕೌಂಟ್', payable:'ಪಾವತಿಸಬೇಕಾದದ್ದು',
@@ -2664,14 +2663,14 @@ header nav ul li:first-child{margin-left:2px!important}
       quality:'ഗുണനിലവാരവും വിശ്വാസവും', founder:'ലക്കി കളക്ഷൻസ് ഉടമ & മാനേജ്മെന്റ്',
       about:'ലക്കി കളക്ഷൻസിലെ ഓരോ ആഭരണവും മികച്ച ഗോൾഡ് പ്ലേറ്റിംഗും പരമ്പരാഗത ഡിസൈനുകളും ഉപയോഗിച്ച് നിർമ്മിക്കുന്നു. ചീരാല മേഖലയിൽ പ്രിയപ്പെട്ട ഞങ്ങളുടെ ബ്രാൻഡ് ഇപ്പോൾ ഓൺലൈനായി ഇന്ത്യയിലുടനീളം സേവനം നൽകുന്നു.',
       services:['1 ഗ്രാം ഗോൾഡ് ആഭരണങ്ങൾ','വിവാഹ ആഭരണങ്ങൾ വാടകയ്ക്ക്','ഡിസൈനർ മഗ്ഗം വർക്ക് ബ്ലൗസുകൾ','ഫാൻസി & മാച്ചിംഗ് ബാംഗിൾസ്','ലക്സറി പെർഫ്യൂമ്സ് & ബ്യൂട്ടി കെയർ','100% ഗ്യാരണ്ടീഡ് ക്വാളിറ്റി'],
-      viewCollections:'കളക്ഷൻ കാണുക', call:'വിളിക്കൂ', giftBtn:'✨ ഓരോ ₹2000 വാങ്ങലിനും സൗജന്യ ഗിഫ്റ്റ്! നിങ്ങളുടെ ഗിഫ്റ്റ് കാണൂ ✨',
+      viewCollections:'കളക്ഷൻ കാണുക', call:'വിളിക്കൂ', giftBtn:'🎁 കാർട്ടിൽ നിങ്ങളുടെ ഗിഫ്റ്റ് റിവാർഡുകൾ കാണുക',
       shopCategory:'കാറ്റഗറി അനുസരിച്ച് ഷോപ്പ് ചെയ്യൂ', cart:'നിങ്ങളുടെ ഷോപ്പിംഗ് കാർട്ട്', empty:'നിങ്ങളുടെ കാർട്ട് ശൂന്യമാണ്.',
       cartOfferHead:'🛍️ മറ്റൊരു ഐറ്റം കൂടി എടുക്കൂ — പ്രത്യേക ഓഫർ നേടൂ!', cartOfferTitle:'✨ നിങ്ങളുടെ കാർട്ടിലേക്ക് മറ്റൊരു ഐറ്റം ചേർക്കൂ',
       cartOfferText:'മറ്റൊരു ഐറ്റം വാങ്ങി മികച്ച പ്രത്യേക ഓഫർ നേടൂ.', view:'കാണൂ →',
-      discountNote:'⚠️ ഓഫർ ഡിസ്കൗണ്ട് 1-ഗ്രാം ഗോൾഡിനും കോംബോകൾക്കും മാത്രം ബാധകം.',
+      discountNote:'🎁 ₹1,000 / ₹2,000 / ₹3,000 വാങ്ങൽ ഘട്ടങ്ങളിൽ ഗിഫ്റ്റ് റിവാർഡുകൾ കാർട്ടിൽ കാണിക്കും.',
       subtotal:'സബ്‌ടോട്ടൽ:', discount:'ഡിസ്കൗണ്ട് (1 ഗ്രാം ഗോൾഡ്/കോംബോ):', total:'ആകെ നൽകേണ്ടത്:',
       orderWhatsapp:'വാട്ട്സ്ആപ്പിൽ ഓർഡർ ചെയ്യൂ', offerTitle:'നിങ്ങളുടെ ഓഫർ പരിശോധിക്കൂ',
-      offerSubtitle:'മൊബൈൽ നമ്പർ നൽകി നിങ്ങളുടെ പ്രത്യേക ഡിസ്കൗണ്ട് ഉടൻ കാണൂ',
+      offerSubtitle:'മൊബൈൽ നമ്പർ നൽകുക. നിങ്ങളുടെ ഓർഡർ വിവരങ്ങൾ തീയതിയും സമയവും സഹിതം WhatsApp-ൽ അയയ്ക്കും.',
       phonePlaceholder:'10 അക്ക മൊബൈൽ നമ്പർ', check:'ഓഫർ പരിശോധിക്കൂ',
       phoneError:'⚠️ ദയവായി ശരിയായ 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക.',
       specialOffer:'🎉 നിങ്ങളുടെ നമ്പറിനുള്ള പ്രത്യേക ഓഫർ', discountWord:'ഡിസ്കൗണ്ട്', payable:'നൽകേണ്ടത്',
@@ -2696,14 +2695,14 @@ header nav ul li:first-child{margin-left:2px!important}
       quality:'தரம் & நம்பிக்கை', founder:'லக்கி கலெக்ஷன்ஸ் உரிமையாளர் & மேலாண்மை',
       about:'லக்கி கலெக்ஷன்ஸில் ஒவ்வொரு நகையும் உயர்தர கோல்ட் பிளேட்டிங் மற்றும் பாரம்பரிய டிசைன்களுடன் தயாரிக்கப்படுகிறது. சீராலா பகுதியில் விரும்பப்படும் எங்கள் பிராண்ட் இப்போது ஆன்லைனில் இந்தியா முழுவதும் சேவை வழங்குகிறது.',
       services:['1 கிராம் கோல்ட் நகைகள்','திருமண நகைகள் வாடகைக்கு','டிசைனர் மக்ஹம் வொர்க் பிளவுஸ்','ஃபேன்சி & மேட்சிங் வளையல்கள்','லக்சுரி பர்ஃப்யூம்ஸ் & பியூட்டி கேர்','100% உத்தரவாத தரம்'],
-      viewCollections:'கலெக்ஷன்களை பார்க்க', call:'அழைக்கவும்', giftBtn:'✨ ஒவ்வொரு ₹2000 வாங்குதலுக்கும் இலவச கிஃப்ட்! உங்கள் கிஃப்ட்டை பாருங்கள் ✨',
+      viewCollections:'கலெக்ஷன்களை பார்க்க', call:'அழைக்கவும்', giftBtn:'🎁 கார்ட்டில் உங்கள் கிஃப்ட் ரிவார்டுகளைப் பாருங்கள்',
       shopCategory:'வகை வாரியாக வாங்குங்கள்', cart:'உங்கள் ஷாப்பிங் கார்ட்', empty:'உங்கள் கார்ட் காலியாக உள்ளது.',
       cartOfferHead:'🛍️ இன்னொரு பொருள் வாங்குங்கள் — சிறப்பு சலுகை பெறுங்கள்!', cartOfferTitle:'✨ உங்கள் கார்ட்டில் இன்னொரு பொருளை சேர்க்கவும்',
       cartOfferText:'இன்னொரு பொருளை வாங்கி சிறப்பு சலுகையை பெறுங்கள்.', view:'பார்க்க →',
-      discountNote:'⚠️ சலுகை தள்ளுபடி 1-கிராம் கோல்ட் மற்றும் காம்போக்களுக்கு மட்டும்.',
+      discountNote:'🎁 ₹1,000 / ₹2,000 / ₹3,000 வாங்கும் நிலைகளில் கிஃப்ட் ரிவார்டுகள் கார்ட்டில் காட்டப்படும்.',
       subtotal:'சப்டோட்டல்:', discount:'தள்ளுபடி (1 கிராம் கோல்ட்/காம்போ):', total:'மொத்தம் செலுத்த வேண்டியது:',
       orderWhatsapp:'வாட்ஸ்அப்பில் ஆர்டர் செய்யுங்கள்', offerTitle:'உங்கள் சலுகையை பார்க்கவும்',
-      offerSubtitle:'உங்கள் மொபைல் எண்ணை உள்ளிட்டு சிறப்பு தள்ளுபடியை உடனே பார்க்கவும்',
+      offerSubtitle:'உங்கள் மொபைல் எண்ணை உள்ளிடுங்கள். உங்கள் ஆர்டர் விவரங்கள் தேதி மற்றும் நேரத்துடன் WhatsApp-ல் அனுப்பப்படும்.',
       phonePlaceholder:'10 இலக்க மொபைல் எண்', check:'சலுகையை சரிபார்க்கவும்',
       phoneError:'⚠️ சரியான 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.',
       specialOffer:'🎉 உங்கள் எண்ணுக்கான சிறப்பு சலுகை', discountWord:'தள்ளுபடி', payable:'செலுத்த வேண்டியது',
@@ -2791,11 +2790,7 @@ header nav ul li:first-child{margin-left:2px!important}
     });
 
     setText(document.getElementById('cart-sidebar')?.querySelector('.cart-header h3'),'cart');
-    const topHead=document.querySelector('.cart-top-offer-head'); setText(topHead,'cartOfferHead');
-    setText(document.getElementById('cartTopOfferTitle'),'cartOfferTitle');
-    setText(document.getElementById('cartTopOfferText'),'cartOfferText');
-    const topBtn=document.querySelector('.cart-top-offer-btn'); setText(topBtn,'view');
-    setText(document.getElementById('cartDiscountNote'),'discountNote');
+     const topHead=document.querySelector('.cart-top-offer-head'); if(topHead) topHead.innerText='🎁 '+(currentLang==='te'?'కొనుగోలు గిఫ్ట్ రివార్డ్స్':currentLang==='en'?'Purchase Gift Rewards':currentLang==='hi'?'खरीदारी गिफ्ट रिवॉर्ड्स':currentLang==='kn'?'ಖರೀದಿ ಗಿಫ್ಟ್ ರಿವಾರ್ಡ್‌ಗಳು':currentLang==='ml'?'വാങ്ങൽ ഗിഫ്റ്റ് റിവാർഡുകൾ':'வாங்கும் கிஃப்ட் ரிவார்டுகள்');
 
     const footerCols=document.querySelectorAll('.footer-col');
     if(footerCols[0]) setText(footerCols[0].querySelector('p'),'footerAbout');
@@ -2873,87 +2868,70 @@ header nav ul li:first-child{margin-left:2px!important}
     if(title) title.innerText=catName(cat);
   };
 
-  // Translated cart renderer.
+  // Multilingual cart renderer with purchase-based free-gift tiers.
   window.updateCartUI=function(){
-    document.getElementById('cart-count').innerText=cart.length;
+    const count=document.getElementById('cart-count');
     const container=document.getElementById('cart-items-container');
     const subtotalEl=document.getElementById('cart-subtotal-price');
-    const discountEl=document.getElementById('cart-discount-price');
+    const giftEl=document.getElementById('cart-discount-price');
     const totalEl=document.getElementById('cart-total-price');
-    const cartNote=document.getElementById('cartDiscountNote');
-    const topOffer=document.getElementById('cartTopOffer');
+    if(count) count.innerText=cart.length;
+    if(!container || !subtotalEl || !totalEl) return;
+
     if(cart.length===0){
       container.innerHTML=`<p style="text-align:center;color:#777;margin-top:30px">${t('empty')}</p>`;
-      subtotalEl.innerText='₹0'; discountEl.innerText='-₹0'; totalEl.innerText='₹0';
-      cartNote.style.display='none'; if(topOffer) topOffer.classList.remove('show'); return;
+      subtotalEl.innerText='₹0';
+      if(giftEl) giftEl.innerText='గిఫ్ట్ రివార్డ్';
+      totalEl.innerText='₹0';
+      renderCartGiftRewards(0,false);
+      return;
     }
-    let subtotal=0, discountableSubtotal=0;
+
+    let subtotal=0;
     container.innerHTML=cart.map((item,index)=>{
       subtotal+=Number(item.newPrice||0);
-      if(['gold','combos'].includes(item.category)) discountableSubtotal+=Number(item.newPrice||0);
       return `<div style="display:flex;gap:10px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:10px;align-items:center">
         <img src="${item.img}" style="width:52px;height:52px;object-fit:contain;border-radius:10px;background:#fff;cursor:pointer" onclick="openImageModal('${escapeJsString(item.img)}','${escapeJsString(productName(item))}','${escapeJsString(item.defaultImg)}')" onerror="this.src='${item.defaultImg}'">
         <div style="flex:1"><h4 style="font-size:12px;font-weight:700">${escapeHtmlAttr(productName(item))}</h4><p style="font-size:12px;color:var(--burgundy);font-weight:800;margin-top:3px">₹${item.newPrice}</p></div>
         <i class="fa-solid fa-trash" style="color:#b42318;cursor:pointer;font-size:14px" onclick="removeFromCart(${index})"></i>
       </div>`;
     }).join('');
-    if(topOffer){
-      topOffer.classList.add('show');
-      const img=document.getElementById('cartTopOfferImg'); if(img) img.src=CART_EXTRA_OFFER.image;
-      setText(document.getElementById('cartTopOfferTitle'),'cartOfferTitle');
-      setText(document.getElementById('cartTopOfferText'),'cartOfferText');
-    }
-    cartNote.style.display=activeDiscountPercent>0 && discountableSubtotal>0?'block':'none';
-    const discountAmount=Math.round(discountableSubtotal*activeDiscountPercent/100);
-    subtotalEl.innerText=`₹${subtotal}`;
-    discountEl.innerText=`-₹${discountAmount} (${activeDiscountPercent}%)`;
-    totalEl.innerText=`₹${subtotal-discountAmount}`;
+
+    const tier=getGiftTier(subtotal);
+    subtotalEl.innerText=`₹${subtotal.toLocaleString('en-IN')}`;
+    if(giftEl) giftEl.innerText=tier>0?`${tier} గిఫ్ట్${tier>1?'లు':''}`:'గిఫ్ట్ రివార్డ్';
+    totalEl.innerText=`₹${subtotal.toLocaleString('en-IN')}`;
+    renderCartGiftRewards(subtotal,true);
   };
 
-  // Translate offer result after the original offer calculation.
+  // Order-details popup only; there is no percentage/discount calculation.
   const originalCheck=window.checkModalOffer;
-  window.checkModalOffer=function(){
-    originalCheck();
-    const result=document.getElementById('modalOfferResult');
-    if(!result) return;
-    const offerBaseText=document.getElementById('modalCartBaseText');
-    if(offerBaseText && !pendingChat) offerBaseText.innerText=cart.length?t('eligible')+' ₹'+getCartTotals().discountableSubtotal.toLocaleString('en-IN'):t('onlyEligible');
-    const disc=document.getElementById('modalDiscountAmount');
-    const fin=document.getElementById('modalFinalAmount');
-    const gift=document.getElementById('modalGiftName');
-    if(disc && activeDiscountPercent>=0){
-      const totals=pendingChat&&pendingChat.type==='product'
-        ? (products.find(p=>p.id===pendingChat.productId) ? (()=>{const p=products.find(p=>p.id===pendingChat.productId);const a=['gold','combos'].includes(p.category)?Math.round(p.newPrice*activeDiscountPercent/100):0;return {a,final:p.newPrice-a};})() : {a:0,final:0})
-        : {a:getCartTotals().discountAmount,final:getCartTotals().total};
-      disc.innerText=`₹${totals.a.toLocaleString('en-IN')} ${t('discountWord')}`;
-      fin.innerText=`${t('payable')} ₹${totals.final.toLocaleString('en-IN')}`;
-    }
-    if(gift) gift.innerText=`${t('specialGift')} ${activeGiftName}`;
-  };
+  window.checkModalOffer=function(){ originalCheck(); };
 
-  // Translated WhatsApp message text.
+  // WhatsApp message includes the customer's mobile number and India date/time.
   window.continueOfferWhatsApp=function(){
     if(!activeUserPhone || !pendingChat) return;
-    const chat=pendingChat, dateTime=getIndiaDateTime(), offer=`${activeDiscountPercent}% OFF`;
+    const chat=pendingChat, dateTime=getIndiaDateTime();
     if(chat.type==='product'){
       const product=products.find(p=>p.id===chat.productId); if(!product) return;
-      const eligible=DISCOUNT_CATEGORIES.includes(product.category);
-      const discountAmount=eligible?Math.round(product.newPrice*activeDiscountPercent/100):0;
-      const finalPrice=product.newPrice-discountAmount;
-      const message=`${t('information')}%0A%0A*${encodeURIComponent(t('product'))}:* ${encodeURIComponent(productName(product))}%0A*${encodeURIComponent(t('price'))}:* ₹${product.newPrice}%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(dateTime)}%0A*Offer:* ${eligible?offer:t('onlyEligible')}%0A*${encodeURIComponent(t('discountWord'))}:* ₹${discountAmount}%0A*${encodeURIComponent(t('afterOffer'))}:* ₹${finalPrice}`;
+      const message=`${t('information')}%0A%0A*${encodeURIComponent(t('product'))}:* ${encodeURIComponent(productName(product))}%0A*${encodeURIComponent(t('price'))}:* ₹${product.newPrice}%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(dateTime)}%0A%0A${encodeURIComponent('దయచేసి ఈ ప్రొడక్ట్ గురించి సమాచారం / ఆర్డర్ వివరాలు తెలియజేయండి.')}`;
       window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`,'_blank');
-    }else if(chat.type==='cart'){ checkoutCart(true); }
+    }else if(chat.type==='cart'){
+      window.checkoutCart(true);
+    }
   };
 
-  // Translated cart checkout.
   window.checkoutCart=function(fromOfferButton=false){
     if(cart.length===0){alert(t('empty'));return;}
     if(!activeUserPhone && !fromOfferButton){openOfferModal({type:'cart'});return;}
     if(!activeUserPhone)return;
-    const totals=getCartTotals();
+    const subtotal=cart.reduce((sum,item)=>sum+Number(item.newPrice||0),0);
+    const unlocked=getUnlockedGifts(subtotal);
+    const giftText=unlocked.length
+      ? unlocked.map(g=>`₹${g.amount.toLocaleString('en-IN')} ${encodeURIComponent('గిఫ్ట్')}: ${encodeURIComponent(g.gift)}`).join('%0A')
+      : encodeURIComponent('₹1,000 గిఫ్ట్ ఇంకా అన్‌లాక్ కాలేదు');
     const itemsList=cart.map(item=>`- ${encodeURIComponent(productName(item))} (₹${item.newPrice})`).join('%0A');
-    const couponText=activeDiscountPercent>0?`%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(getIndiaDateTime())}%0A*Offer:* ${activeDiscountPercent}% OFF%0A*${encodeURIComponent(t('eligible'))}:* ₹${totals.discountableSubtotal}%0A*${encodeURIComponent(t('discountWord'))}:* -₹${totals.discountAmount}%0A*${encodeURIComponent(t('specialGift'))}:* ${encodeURIComponent(activeGiftName)}`:'';
-    const message=`${t('cartOrder')}%0A%0A${itemsList}%0A%0A*${encodeURIComponent(t('subtotal'))}* ₹${totals.subtotal}${couponText}%0A*${encodeURIComponent(t('total'))}* ₹${totals.total}`;
+    const message=`${t('cartOrder')}%0A%0A${itemsList}%0A%0A*${encodeURIComponent(t('subtotal'))}* ₹${subtotal.toLocaleString('en-IN')}%0A*గిఫ్ట్ రివార్డ్స్:*%0A${giftText}%0A*${encodeURIComponent(t('total'))}* ₹${subtotal.toLocaleString('en-IN')}%0A*${encodeURIComponent(t('mobile'))}:* ${activeUserPhone}%0A*${encodeURIComponent(t('dateTime'))}:* ${encodeURIComponent(getIndiaDateTime())}`;
     window.open(`https://api.whatsapp.com/send?phone=${phoneNo}&text=${message}`,'_blank');
     document.getElementById('offerModal').classList.remove('show'); pendingChat=null;
   };
@@ -2968,16 +2946,7 @@ header nav ul li:first-child{margin-left:2px!important}
       updateCartUI();
     });
   });
-
-  // Override celebration text so it also follows the chosen language.
-  const oldLaunch=window.launchFrontCelebration;
-  window.launchFrontCelebration=function(){
-    oldLaunch();
-    const text=document.querySelector('.front-celebration-text');
-    if(text) text.textContent=t('specialOfferShort');
-  };
-
-  window.addEventListener('load',()=>{
+window.addEventListener('load',()=>{
     setTimeout(()=>{
       applyStatic();
       filterProducts('combos',document.getElementById('cat-combos'));
